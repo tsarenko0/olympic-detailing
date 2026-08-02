@@ -74,7 +74,7 @@ export function Navbar() {
               onClick={() => setMenuOpen((v) => !v)}
               className="flex size-10 items-center justify-center rounded-md border border-border text-foreground lg:hidden"
             >
-              {menuOpen ? <Menu className="size-5" /> : <Menu className="size-5" />}
+              {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>
           </div>
         </div>

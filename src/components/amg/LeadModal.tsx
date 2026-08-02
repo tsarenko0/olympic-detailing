@@ -26,7 +26,7 @@ export function LeadModal({
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  presetService?: string;
+  presetService?: string | undefined;
 }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
