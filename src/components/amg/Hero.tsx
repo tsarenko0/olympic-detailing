@@ -1,7 +1,7 @@
 import { ArrowRight, Shield, Sparkles, Volume2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLeadModal } from "./LeadModalProvider";
-import heroImg from "@/assets/hero-amg.jpg";
+import heroAsset from "@/assets/hero-amg-s63.jpg.asset.json";
 
 const STATS = [
   { icon: Shield, label: "Гарантия до 24 месяцев" },
@@ -16,10 +16,10 @@ export function Hero() {
     <section id="top" className="relative min-h-[100svh] overflow-hidden pt-32 md:pt-40">
       <div className="absolute inset-0">
         <img
-          src={heroImg}
-          alt="Чёрный Mercedes-AMG в детейлинг-студии с красной подсветкой"
-          width={1920}
-          height={1088}
+          src={heroAsset.url}
+          alt="Чёрный Mercedes-AMG S63 в детейлинг-студии AMG"
+          width={880}
+          height={780}
           className="hero-enter size-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/65 to-background/30" />
