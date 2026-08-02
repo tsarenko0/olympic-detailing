@@ -1,11 +1,11 @@
-import logo from "@/assets/amg-logo.png.asset.json";
+import logo from "@/assets/amg-logo.png";
 import { cn } from "@/lib/utils";
 
 export function Logo({ className }: { className?: string }) {
   return (
     <a href="#top" className={cn("flex items-center gap-3", className)}>
       <img
-        src={logo.url}
+        src={logo}
         alt="AMG — детейлинг-студия в Краснодаре"
         width={48}
         height={48}
