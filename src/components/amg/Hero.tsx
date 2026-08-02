@@ -22,8 +22,9 @@ export function Hero() {
           height={1088}
           className="hero-enter size-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/50" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/65 to-background/30" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-background to-transparent" />
+
       </div>
 
       <div className="relative mx-auto flex max-w-7xl flex-col justify-center px-5 pb-20 md:px-8 md:pb-28">
