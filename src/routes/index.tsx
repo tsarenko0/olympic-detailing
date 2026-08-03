@@ -2,10 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { LeadModalProvider } from "@/components/amg/LeadModalProvider";
 import { Navbar } from "@/components/amg/Navbar";
 import { Hero } from "@/components/amg/Hero";
+import { MotionMarquee } from "@/components/amg/MotionMarquee";
 import { Services } from "@/components/amg/Services";
 import { Faq } from "@/components/amg/Faq";
 import { InstagramGrid } from "@/components/amg/InstagramGrid";
 import { Contacts } from "@/components/amg/Contacts";
+import { Footer } from "@/components/amg/Footer";
 
 const title = "AMG — премиальный детейлинг авто в Краснодаре";
 const description =
@@ -29,13 +31,15 @@ function Index() {
   return (
     <LeadModalProvider>
       <Navbar />
-      <main>
+      <main className="min-w-0">
         <Hero />
+        <MotionMarquee />
         <Services />
         <Faq />
         <InstagramGrid />
         <Contacts />
       </main>
+      <Footer />
     </LeadModalProvider>
   );
 }
