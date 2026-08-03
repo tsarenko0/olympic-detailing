@@ -1,75 +1,73 @@
 import { Instagram } from "lucide-react";
-import { CONTACT } from "@/lib/amg-data";
+import { CONTACT, INSTAGRAM_REELS } from "@/lib/amg-data";
 import { Reveal } from "./Reveal";
-import g1 from "@/assets/gallery-1.jpg";
-import g2 from "@/assets/gallery-2.jpg";
-import g3 from "@/assets/gallery-3.jpg";
-import g4 from "@/assets/gallery-4.jpg";
-import g5 from "@/assets/gallery-5.jpg";
-import g6 from "@/assets/gallery-6.jpg";
+import poster1 from "@/assets/gallery-1.jpg";
+import poster2 from "@/assets/gallery-6.jpg";
+import poster3 from "@/assets/gallery-3.jpg";
 
-const ITEMS = [
-  { src: g1, alt: "Колесо AMG с красным суппортом после детейлинга", video: false },
-  { src: g6, alt: "Автомобиль в детейлинг-студии с красной подсветкой", video: true },
-  { src: g3, alt: "Капот после керамического покрытия с каплями воды", video: false },
-  { src: g5, alt: "Салон автомобиля с красной подсветкой", video: false },
-  { src: g2, alt: "Задний фонарь автомобиля после полировки", video: true },
-  { src: g4, alt: "Карбоновая деталь кузова крупным планом", video: false },
-];
+const REEL_POSTERS = [poster1, poster2, poster3] as const;
+const REEL_REVEAL_STEP_MS = 160;
 
 export function InstagramGrid() {
   return (
-    <section id="gallery" className="relative py-20 md:py-28">
+    <section id="gallery" className="relative overflow-hidden border-y border-border py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <Reveal className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
+        <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
+          <Reveal variant="left" className="motion-underline">
             <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary">
-              Портфолио
+              Instagram
             </p>
-            <h2 className="mt-3 text-3xl font-bold leading-[0.95] md:text-5xl">Наш Instagram</h2>
-          </div>
-          <a
-            href={CONTACT.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary"
-          >
-            <Instagram className="size-4" />
-            Смотреть все работы
-          </a>
-        </Reveal>
+            <h2 className="mt-3 text-3xl font-bold leading-[0.95] md:text-5xl">
+              Узнавайте о новостях{" "}
+              <span className="text-gradient-crimson">первыми</span>
+            </h2>
+            <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base">
+              В Instagram публикуем короткие видео с реальных проектов: оклейка, шумоизоляция,
+              полировка и керамика. Именно там первыми появляются все новинки, свежие работы
+              и закулисье студии.
+            </p>
+            <a
+              href={CONTACT.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-muted-foreground transition-all duration-300 hover:gap-3 hover:text-primary"
+            >
+              <Instagram className="float-slow size-4 text-primary" />
+              Перейти в Instagram
+            </a>
+          </Reveal>
 
-        <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
-          {ITEMS.map((item, i) => (
-            <Reveal key={item.alt} delay={i * 70}>
-              <a
-                href={CONTACT.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative block aspect-square overflow-hidden rounded-md border border-border"
-              >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  loading="lazy"
-                  width={900}
-                  height={900}
-                  className="size-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <span className="absolute inset-0 bg-background/40 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <span className="absolute inset-0 flex items-center justify-center">
-                  <span className="flex size-12 scale-75 items-center justify-center rounded-full bg-gradient-crimson opacity-0 shadow-crimson transition-all duration-500 group-hover:scale-100 group-hover:opacity-100">
-                    <Instagram className="size-5 text-primary-foreground" />
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4" style={{ perspective: "1200px" }}>
+            {INSTAGRAM_REELS.map((reel, i) => (
+              <Reveal key={reel.href} delay={i * REEL_REVEAL_STEP_MS} variant="cascade">
+                <a
+                  href={reel.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={reel.title}
+                  className="group relative block aspect-[9/16] overflow-hidden rounded-md border border-border bg-surface transition-all duration-500 hover:-translate-y-3 hover:rotate-1 hover:shadow-crimson"
+                  style={{ transitionDelay: `${i * 40}ms` }}
+                >
+                  <video
+                    className="size-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    poster={REEL_POSTERS[i]}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                  >
+                    <source src={reel.video} type="video/mp4" />
+                  </video>
+                  <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-60" />
+                  <span className="absolute bottom-2 left-2 right-2 flex items-center justify-center gap-1.5 rounded-sm bg-background/70 px-2 py-1 text-[9px] font-semibold uppercase tracking-widest text-foreground backdrop-blur transition-transform duration-500 group-hover:-translate-y-1 sm:text-[10px]">
+                    <Instagram className="size-3 shrink-0 text-primary" />
+                    Reels
                   </span>
-                </span>
-                {item.video && (
-                  <span className="absolute right-3 top-3 rounded-sm bg-background/70 px-2 py-1 text-[10px] font-semibold uppercase tracking-widest text-foreground backdrop-blur">
-                    Video
-                  </span>
-                )}
-              </a>
-            </Reveal>
-          ))}
+                </a>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>
