@@ -1,52 +1,49 @@
 import { Clock, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CONTACT, NAV_LINKS } from "@/lib/amg-data";
+import { CONTACT } from "@/lib/amg-data";
 import { Reveal } from "./Reveal";
-import { Logo } from "./Logo";
-import garage from "@/assets/gallery-6.jpg";
+import { ContactLeadForm } from "./ContactLeadForm";
+import { YandexMap } from "./YandexMap";
+
+const BLOCK_REVEAL_STEP_MS = 140;
 
 export function Contacts() {
   return (
-    <section id="contacts" className="relative border-t border-border">
-      <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
-        <Reveal className="max-w-2xl">
+    <section id="contacts" className="section-ember relative overflow-hidden border-t border-border">
+      <div
+        className="pointer-events-none absolute right-0 top-0 size-80 rounded-full opacity-25"
+        style={{
+          background: "radial-gradient(circle, oklch(0.57 0.235 27.5 / 0.18), transparent 70%)",
+        }}
+        aria-hidden
+      />
+
+      <div className="relative mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+        <Reveal variant="scale" className="motion-underline max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary">Контакты</p>
           <h2 className="mt-3 text-3xl font-bold leading-[0.95] md:text-5xl">
-            Приезжайте <span className="text-gradient-crimson">в студию</span>
+            Приезжайте в <span className="text-gradient-crimson">AMG Detailing</span>
           </h2>
         </Reveal>
 
-        <div className="mt-10 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-          <Reveal>
-            <div className="relative h-72 overflow-hidden rounded-md border border-border md:h-full md:min-h-[380px]">
-              <img
-                src={garage}
-                alt="Детейлинг-студия AMG в Краснодаре"
-                loading="lazy"
-                width={900}
-                height={900}
-                className="size-full object-cover opacity-45 grayscale"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-center">
-                <span className="flex size-14 items-center justify-center rounded-full bg-gradient-crimson shadow-crimson">
-                  <MapPin className="size-6 text-primary-foreground" />
-                </span>
-                <p className="font-display text-xl font-bold uppercase tracking-wide md:text-2xl">
-                  Краснодар, ул. Мачуги, 157
-                </p>
-                <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                  Закрытый бокс · парковка у входа
-                </p>
-              </div>
+        <div className="mt-10 grid gap-4 lg:grid-cols-3 lg:items-stretch lg:gap-3">
+          <Reveal delay={BLOCK_REVEAL_STEP_MS} variant="left" className="relative z-0">
+            <div className="relative h-72 overflow-hidden rounded-md border border-border lg:h-full lg:min-h-[420px]">
+              <YandexMap />
             </div>
           </Reveal>
 
-          <Reveal delay={120}>
-            <div className="surface-panel flex h-full flex-col justify-between gap-8 rounded-md border border-border p-6 md:p-8">
-              <div className="space-y-6">
+          <Reveal delay={BLOCK_REVEAL_STEP_MS * 2} variant="scale" className="relative z-20 lg:-mx-1.5 lg:-my-1.5">
+            <div className="surface-panel h-full rounded-md border border-primary/55 p-6 shadow-[0_0_0_1px_oklch(0.57_0.235_27.5_/_0.4),0_0_36px_-4px_oklch(0.57_0.235_27.5_/_0.55),0_0_18px_oklch(0.57_0.235_27.5_/_0.22),0_18px_40px_-28px_oklch(0_0_0_/_0.55)] md:p-8 lg:scale-[1.03]">
+              <ContactLeadForm />
+            </div>
+          </Reveal>
+
+          <Reveal delay={BLOCK_REVEAL_STEP_MS * 3} variant="right" className="relative z-0">
+            <div className="surface-panel flex h-full flex-col justify-between gap-8 rounded-md border border-border p-6 md:p-8 lg:min-h-[420px]">
+              <div className="contact-stagger space-y-6">
                 <div className="flex items-start gap-4">
-                  <Phone className="mt-1 size-5 shrink-0 text-primary" />
+                  <Phone className="icon-bob mt-1 size-5 shrink-0 text-primary" />
                   <div>
                     <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
                       Телефон
@@ -60,7 +57,10 @@ export function Contacts() {
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <Clock className="mt-1 size-5 shrink-0 text-primary" />
+                  <Clock
+                    className="icon-bob mt-1 size-5 shrink-0 text-primary"
+                    style={{ animationDelay: "0.4s" }}
+                  />
                   <div>
                     <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
                       Режим работы
@@ -72,21 +72,31 @@ export function Contacts() {
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <MapPin className="mt-1 size-5 shrink-0 text-primary" />
+                  <MapPin
+                    className="icon-bob mt-1 size-5 shrink-0 text-primary"
+                    style={{ animationDelay: "0.8s" }}
+                  />
                   <div>
                     <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
                       Адрес
                     </p>
-                    <p className="text-sm">{CONTACT.address}</p>
+                    <a
+                      href={CONTACT.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-display text-xl font-bold tracking-wide transition-colors hover:text-primary"
+                    >
+                      {CONTACT.address}
+                    </a>
                   </div>
                 </div>
               </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row">
+              <div className="flex w-full min-w-0 flex-col gap-3">
                 <Button
                   asChild
                   size="lg"
-                  className="h-12 flex-1 text-xs font-bold uppercase tracking-[0.2em] shadow-crimson"
+                  className="h-12 w-full min-w-0 px-4 text-[11px] font-bold uppercase tracking-[0.14em] shadow-crimson transition-transform duration-300 hover:-translate-y-0.5"
                 >
                   <a href={CONTACT.phoneHref}>
                     <Phone />
@@ -97,11 +107,11 @@ export function Contacts() {
                   asChild
                   variant="outline"
                   size="lg"
-                  className="h-12 flex-1 border-border bg-transparent text-xs font-bold uppercase tracking-[0.2em] hover:border-primary/60 hover:bg-transparent hover:text-primary"
+                  className="h-12 w-full min-w-0 border-border bg-transparent px-4 text-[11px] font-bold uppercase tracking-[0.14em] transition-transform duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:bg-transparent hover:text-primary"
                 >
                   <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer">
                     <MessageCircle />
-                    Написать в WhatsApp
+                    WhatsApp
                   </a>
                 </Button>
               </div>
@@ -109,26 +119,6 @@ export function Contacts() {
           </Reveal>
         </div>
       </div>
-
-      <footer className="border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-10 md:flex-row md:items-center md:justify-between md:px-8">
-          <Logo />
-          <nav className="flex flex-wrap gap-x-6 gap-y-2">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-primary"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-          <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-            © {new Date().getFullYear()} AMG Detailing Studio
-          </p>
-        </div>
-      </footer>
     </section>
   );
 }
