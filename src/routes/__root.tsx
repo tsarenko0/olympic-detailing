@@ -79,13 +79,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AMG — детейлинг-студия в Краснодаре" },
+      { title: "AMG Detailing — детейлинг в Краснодаре" },
       {
         name: "description",
         content:
-          "AMG — премиальная детейлинг-студия в Краснодаре: оклейка плёнкой, шумоизоляция, керамика и химчистка.",
+          "AMG Detailing в Краснодаре: оклейка плёнкой, шумоизоляция, керамика и химчистка.",
       },
-      { property: "og:title", content: "AMG — детейлинг-студия в Краснодаре" },
+      { property: "og:title", content: "AMG Detailing — детейлинг в Краснодаре" },
       {
         property: "og:description",
         content: "Оклейка плёнкой, шумоизоляция, полировка и керамика. Краснодар, ул. Мачуги, 157.",

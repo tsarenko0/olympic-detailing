@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { EMPTY_LEAD_VALUES, useLeadFormState } from "@/hooks/use-lead-form";
 import { LeadFormFields } from "./LeadFormFields";
+import { PrivacyNote } from "./PrivacyNote";
 
 export function LeadModal({
   open,
@@ -58,6 +59,7 @@ export function LeadModal({
           >
             {pending ? "Отправляем..." : "Отправить заявку"}
           </Button>
+          <PrivacyNote />
         </form>
       </DialogContent>
     </Dialog>

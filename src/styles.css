@@ -42,6 +42,8 @@
   --color-surface-2: var(--surface-2);
   --color-crimson: var(--crimson);
   --color-crimson-glow: var(--crimson-glow);
+  --color-bronze: var(--bronze);
+  --color-bronze-muted: var(--bronze-muted);
   --font-display: "Oswald", "Arial Narrow", sans-serif;
   --font-sans: "Manrope", system-ui, sans-serif;
 }
@@ -61,6 +63,8 @@
 
   --crimson: oklch(0.57 0.235 27.5);
   --crimson-glow: oklch(0.66 0.245 26);
+  --bronze: oklch(0.72 0.09 70);
+  --bronze-muted: oklch(0.62 0.07 68);
 
   --primary: oklch(0.57 0.235 27.5);
   --primary-foreground: oklch(0.99 0 0);

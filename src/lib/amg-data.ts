@@ -11,6 +11,12 @@ export const CONTACT = {
     "https://yandex.ru/maps/?um=constructor%3A3ee8ca76d58737ca662dec5c707692c09362d6ea377feefb091bae6a7042cd1b&source=constructorLink",
 };
 
+export const PRIVACY_PATH = "/privacy" as const;
+
+export const SITE_CREDIT = {
+  label: "Сайт сделан компанией Честный Маркетинг",
+} as const;
+
 export const INSTAGRAM_REELS = [
   {
     href: "https://www.instagram.com/reel/DW_Iu0xCK6P/",

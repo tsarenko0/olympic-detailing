@@ -1,5 +1,6 @@
 import { Instagram } from "lucide-react";
 import { CONTACT, INSTAGRAM_REELS } from "@/lib/amg-data";
+import { PrivacyNote } from "./PrivacyNote";
 import { Reveal } from "./Reveal";
 import poster1 from "@/assets/gallery-1.jpg";
 import poster2 from "@/assets/gallery-6.jpg";
@@ -35,6 +36,7 @@ export function InstagramGrid() {
               <Instagram className="float-slow size-4 text-primary" />
               Перейти в Instagram
             </a>
+            <PrivacyNote variant="link" className="mt-4 max-w-md" />
           </Reveal>
 
           <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4" style={{ perspective: "1200px" }}>

@@ -10,9 +10,9 @@ import { InstagramGrid } from "@/components/amg/InstagramGrid";
 import { Contacts } from "@/components/amg/Contacts";
 import { Footer } from "@/components/amg/Footer";
 
-const title = "AMG — премиальный детейлинг авто в Краснодаре";
+const title = "AMG Detailing — премиальный детейлинг в Краснодаре";
 const description =
-  "Детейлинг-студия AMG в Краснодаре: оклейка защитными плёнками, шумоизоляция, полировка и керамика, химчистка салона. Ежедневно 9:30–19:00.";
+  "AMG Detailing в Краснодаре: оклейка защитными плёнками, шумоизоляция, полировка и керамика. Ежедневно 9:30–19:00.";
 
 export const Route = createFileRoute("/")({
   head: () => ({

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { LeadFormFields } from "./LeadFormFields";
+import { PrivacyNote } from "./PrivacyNote";
 import { EMPTY_LEAD_VALUES, useLeadFormState } from "@/hooks/use-lead-form";
 
 export function ContactLeadForm() {
@@ -28,7 +29,7 @@ export function ContactLeadForm() {
 
       <LeadFormFields idPrefix="contact-lead" values={values} onChange={patchValues} />
 
-      <div className="mt-auto">
+      <div className="mt-auto space-y-3">
         <Button
           type="submit"
           size="lg"
@@ -37,6 +38,7 @@ export function ContactLeadForm() {
         >
           {pending ? "Отправляем..." : "Отправить заявку"}
         </Button>
+        <PrivacyNote />
       </div>
     </form>
   );

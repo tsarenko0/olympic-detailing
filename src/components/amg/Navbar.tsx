@@ -69,7 +69,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="relative text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground transition-colors after:absolute after:-bottom-2 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:text-foreground hover:after:w-full"
+                className="relative text-xs font-bold uppercase tracking-[0.25em] text-primary transition-colors after:absolute after:-bottom-2 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:text-crimson-glow hover:after:w-full"
               >
                 {link.label}
               </a>
@@ -109,7 +109,7 @@ export function Navbar() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className="border-b border-border/60 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-primary"
+                    className="border-b border-border/60 py-3 text-sm font-bold uppercase tracking-[0.2em] text-primary transition-colors hover:text-crimson-glow"
                   >
                     {link.label}
                   </a>

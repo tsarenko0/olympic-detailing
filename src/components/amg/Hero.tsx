@@ -12,7 +12,7 @@ const SUBCOPY_DELAY_MS = 1750;
 const CTA_DELAY_MS = 1900;
 
 const HEADLINE_LINES = [
-  { text: "Премиальный детейлинг авто", accent: false },
+  { text: "AMG Detailing", accent: false },
   { text: "в Краснодаре", accent: true },
 ] as const;
 
@@ -35,7 +35,7 @@ export function Hero() {
         <div className="absolute inset-0 overflow-hidden">
           <img
             src={heroImage}
-            alt="Чёрный Mercedes-AMG S63 в детейлинг-студии AMG"
+            alt="Чёрный Mercedes-AMG S63 в AMG Detailing"
             width={880}
             height={780}
             className="hero-enter size-full object-cover object-center"

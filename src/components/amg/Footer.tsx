@@ -1,5 +1,6 @@
+import { Link } from "@tanstack/react-router";
 import { Instagram, MessageCircle, Phone } from "lucide-react";
-import { CONTACT, NAV_LINKS } from "@/lib/amg-data";
+import { CONTACT, NAV_LINKS, PRIVACY_PATH, SITE_CREDIT } from "@/lib/amg-data";
 import { Logo } from "./Logo";
 
 export function Footer() {
@@ -22,11 +23,17 @@ export function Footer() {
               <a
                 key={link.href}
                 href={link.href}
-                className="w-fit text-sm text-muted-foreground transition-colors hover:text-primary"
+                className="w-fit text-sm font-semibold text-primary transition-colors hover:text-crimson-glow"
               >
                 {link.label}
               </a>
             ))}
+            <Link
+              to={PRIVACY_PATH}
+              className="w-fit text-sm text-muted-foreground transition-colors hover:text-primary"
+            >
+              Политика конфиденциальности
+            </Link>
           </nav>
         </div>
 
@@ -74,9 +81,15 @@ export function Footer() {
       </div>
 
       <div className="border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-5 text-[11px] uppercase tracking-[0.2em] text-muted-foreground md:flex-row md:items-center md:justify-between md:px-8">
-          <p>© {new Date().getFullYear()} AMG Detailing</p>
-          <p>Краснодар</p>
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-5 text-[11px] uppercase tracking-[0.2em] md:flex-row md:items-center md:justify-between md:px-8">
+          <p className="text-muted-foreground">© {new Date().getFullYear()} AMG Detailing</p>
+          <p className="font-semibold text-bronze">{SITE_CREDIT.label}</p>
+          <Link
+            to={PRIVACY_PATH}
+            className="text-muted-foreground transition-colors hover:text-primary"
+          >
+            Политика конфиденциальности
+          </Link>
         </div>
       </div>
     </footer>
