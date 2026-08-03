@@ -8,16 +8,20 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { SERVICES_OPTIONS } from "@/lib/amg-data";
+import { submitContactLead } from "@/lib/submit-contact-lead";
+import { LeadFormFields, type LeadFormValues } from "./LeadFormFields";
+
+const EMPTY_VALUES: LeadFormValues = {
+  name: "",
+  phone: "",
+  carBrand: "",
+  service: "",
+};
+
+function isServiceOption(value: string): value is (typeof SERVICES_OPTIONS)[number] {
+  return (SERVICES_OPTIONS as readonly string[]).includes(value);
+}
 
 export function LeadModal({
   open,
@@ -28,25 +32,50 @@ export function LeadModal({
   onOpenChange: (open: boolean) => void;
   presetService?: string | undefined;
 }) {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [car, setCar] = useState("");
-  const [service, setService] = useState(presetService ?? "");
+  const [values, setValues] = useState<LeadFormValues>(EMPTY_VALUES);
+  const [pending, setPending] = useState(false);
 
   useEffect(() => {
-    if (open) setService(presetService ?? "");
+    if (!open) return;
+    setValues({
+      ...EMPTY_VALUES,
+      service: presetService && isServiceOption(presetService) ? presetService : "",
+    });
   }, [open, presetService]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onOpenChange(false);
-    toast.success("Спасибо! Мы перезвоним вам", {
-      description: "Наш мастер свяжется с вами в рабочее время: 9:30 — 19:00.",
-    });
-    setName("");
-    setPhone("");
-    setCar("");
-    setService("");
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (pending) return;
+
+    if (!values.carBrand.trim() || !isServiceOption(values.service)) {
+      toast.error("Заполните все поля", {
+        description: "Укажите марку авто и выберите услугу.",
+      });
+      return;
+    }
+
+    setPending(true);
+    try {
+      await submitContactLead({
+        data: {
+          name: values.name,
+          phone: values.phone,
+          carBrand: values.carBrand.trim(),
+          service: values.service,
+        },
+      });
+      onOpenChange(false);
+      toast.success("Спасибо! Мы перезвоним вам", {
+        description: "Наш мастер свяжется с вами в рабочее время: 9:30 — 19:00.",
+      });
+      setValues(EMPTY_VALUES);
+    } catch {
+      toast.error("Не удалось отправить заявку", {
+        description: "Проверьте данные или позвоните нам напрямую.",
+      });
+    } finally {
+      setPending(false);
+    }
   };
 
   return (
@@ -63,61 +92,20 @@ export function LeadModal({
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="mt-2 space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="lead-name">Ваше имя</Label>
-            <Input
-              id="lead-name"
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Александр"
-              className="h-11 bg-background/60"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="lead-phone">Телефон</Label>
-            <Input
-              id="lead-phone"
-              type="tel"
-              required
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder="+7 (___) ___-__-__"
-              className="h-11 bg-background/60"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="lead-car">Марка авто</Label>
-            <Input
-              id="lead-car"
-              value={car}
-              onChange={(e) => setCar(e.target.value)}
-              placeholder="Mercedes-AMG GT 63"
-              className="h-11 bg-background/60"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="lead-service">Выберите услугу</Label>
-            <Select value={service} onValueChange={setService}>
-              <SelectTrigger id="lead-service" className="h-11 bg-background/60">
-                <SelectValue placeholder="Услуга" />
-              </SelectTrigger>
-              <SelectContent>
-                {SERVICES_OPTIONS.map((option) => (
-                  <SelectItem key={option} value={option}>
-                    {option}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+          <LeadFormFields
+            idPrefix="lead-modal"
+            values={values}
+            onChange={(patch) => setValues((prev) => ({ ...prev, ...patch }))}
+          />
 
-          <Button type="submit" size="lg" className="h-12 w-full text-sm font-bold uppercase tracking-widest shadow-crimson">
-            Отправить заявку
+          <Button
+            type="submit"
+            size="lg"
+            disabled={pending}
+            className="h-12 w-full text-sm font-bold uppercase tracking-widest shadow-crimson"
+          >
+            {pending ? "Отправляем..." : "Отправить заявку"}
           </Button>
-          <p className="text-center text-[11px] leading-relaxed text-muted-foreground">
-            Нажимая кнопку, вы соглашаетесь на обработку персональных данных.
-          </p>
         </form>
       </DialogContent>
     </Dialog>
