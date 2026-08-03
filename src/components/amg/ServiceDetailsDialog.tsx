@@ -20,7 +20,7 @@ export function ServiceDetailsDialog({
   service: ServiceItem | null;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onOrder: (title: string) => void;
+  onOrder: () => void;
 }) {
   if (!service) return null;
 
@@ -60,7 +60,7 @@ export function ServiceDetailsDialog({
             className="h-9 w-full text-[10px] font-bold uppercase tracking-[0.18em] shadow-crimson sm:w-auto sm:px-5"
             onClick={() => {
               onOpenChange(false);
-              onOrder(service.title);
+              onOrder();
             }}
           >
             Заказать услугу

@@ -7,27 +7,22 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { EMPTY_LEAD_VALUES, isServiceOption, useLeadFormState } from "@/hooks/use-lead-form";
+import { EMPTY_LEAD_VALUES, useLeadFormState } from "@/hooks/use-lead-form";
 import { LeadFormFields } from "./LeadFormFields";
 
 export function LeadModal({
   open,
   onOpenChange,
-  presetService,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  presetService?: string | undefined;
 }) {
   const { values, pending, patchValues, setValues, submit } = useLeadFormState();
 
   useEffect(() => {
     if (!open) return;
-    setValues({
-      ...EMPTY_LEAD_VALUES,
-      service: presetService && isServiceOption(presetService) ? presetService : "",
-    });
-  }, [open, presetService, setValues]);
+    setValues(EMPTY_LEAD_VALUES);
+  }, [open, setValues]);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -48,7 +43,7 @@ export function LeadModal({
             Записаться в <span className="text-gradient-crimson">AMG</span>
           </DialogTitle>
           <DialogDescription className="text-sm text-muted-foreground">
-            Оставьте контакты — рассчитаем стоимость и подберём материалы под ваш автомобиль.
+            Оставьте имя и телефон — перезвоним и проконсультируем.
           </DialogDescription>
         </DialogHeader>
 

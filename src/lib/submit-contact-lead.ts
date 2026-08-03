@@ -1,14 +1,11 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { SERVICES_OPTIONS } from "@/lib/amg-data";
 
 const TELEGRAM_API_BASE = "https://api.telegram.org";
 
 const leadSchema = z.object({
   name: z.string().trim().min(1, "Укажите имя").max(100),
   phone: z.string().trim().min(5, "Укажите телефон").max(40),
-  carBrand: z.string().trim().min(1, "Укажите марку авто").max(80),
-  service: z.enum(SERVICES_OPTIONS, { message: "Выберите услугу" }),
 });
 
 export type ContactLeadInput = z.infer<typeof leadSchema>;
@@ -28,8 +25,6 @@ export const submitContactLead = createServerFn({ method: "POST" })
       "",
       `👤 Имя: ${data.name}`,
       `📞 Телефон: ${data.phone}`,
-      `🚗 Марка: ${data.carBrand}`,
-      `🛠️ Услуга: ${data.service}`,
     ].join("\n");
 
     const response = await fetch(`${TELEGRAM_API_BASE}/bot${token}/sendMessage`, {

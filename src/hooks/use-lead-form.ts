@@ -1,19 +1,12 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { SERVICES_OPTIONS } from "@/lib/amg-data";
 import { submitContactLead } from "@/lib/submit-contact-lead";
 import type { LeadFormValues } from "@/components/amg/LeadFormFields";
 
 export const EMPTY_LEAD_VALUES: LeadFormValues = {
   name: "",
   phone: "",
-  carBrand: "",
-  service: "",
 };
-
-export function isServiceOption(value: string): value is (typeof SERVICES_OPTIONS)[number] {
-  return (SERVICES_OPTIONS as readonly string[]).includes(value);
-}
 
 type SubmitLeadOptions = {
   values: LeadFormValues;
@@ -28,20 +21,11 @@ export async function submitLeadForm({
   successDescription,
   onSuccess,
 }: SubmitLeadOptions) {
-  if (!values.carBrand.trim() || !isServiceOption(values.service)) {
-    toast.error("Заполните все поля", {
-      description: "Укажите марку авто и выберите услугу.",
-    });
-    return false;
-  }
-
   try {
     await submitContactLead({
       data: {
         name: values.name,
         phone: values.phone,
-        carBrand: values.carBrand.trim(),
-        service: values.service,
       },
     });
     toast.success(successTitle, { description: successDescription });

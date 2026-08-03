@@ -1,19 +1,9 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { SERVICES_OPTIONS } from "@/lib/amg-data";
 
 export type LeadFormValues = {
   name: string;
   phone: string;
-  carBrand: string;
-  service: string;
 };
 
 export function LeadFormFields({
@@ -52,38 +42,6 @@ export function LeadFormFields({
           className="h-11 bg-background/60"
           autoComplete="tel"
         />
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor={`${idPrefix}-car`}>Марка авто</Label>
-        <Input
-          id={`${idPrefix}-car`}
-          required
-          value={values.carBrand}
-          onChange={(event) => onChange({ carBrand: event.target.value })}
-          placeholder="Mercedes-AMG GT 63"
-          className="h-11 bg-background/60"
-          autoComplete="off"
-        />
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor={`${idPrefix}-service`}>Услуга</Label>
-        <Select
-          {...(values.service ? { value: values.service } : {})}
-          onValueChange={(service) => onChange({ service })}
-        >
-          <SelectTrigger id={`${idPrefix}-service`} className="h-11 bg-background/60">
-            <SelectValue placeholder="Выберите услугу" />
-          </SelectTrigger>
-          <SelectContent>
-            {SERVICES_OPTIONS.map((option) => (
-              <SelectItem key={option} value={option}>
-                {option}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
       </div>
     </div>
   );

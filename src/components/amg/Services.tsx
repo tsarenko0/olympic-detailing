@@ -65,7 +65,7 @@ export function Services() {
                     <div className="flex flex-wrap gap-2">
                       <Button
                         size="sm"
-                        onClick={() => open(service.title)}
+                        onClick={() => open()}
                         className="h-9 px-4 text-[10px] font-bold uppercase tracking-[0.16em] shadow-crimson"
                       >
                         Заказать
@@ -132,7 +132,7 @@ export function Services() {
         onOpenChange={(open) => {
           if (!open) setDetailsService(null);
         }}
-        onOrder={(title) => open(title)}
+        onOrder={() => open()}
       />
     </section>
   );

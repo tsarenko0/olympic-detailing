@@ -81,7 +81,7 @@ export function Navbar() {
               onClick={() => open()}
               className="h-9 px-3 text-[10px] font-bold uppercase tracking-[0.14em] shadow-crimson sm:h-10 sm:px-5 sm:text-xs sm:tracking-[0.2em]"
             >
-              Записаться
+              Получить консультацию
             </Button>
             <button
               type="button"
