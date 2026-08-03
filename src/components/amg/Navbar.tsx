@@ -19,15 +19,29 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
-      <div className="hidden border-b border-border/70 bg-background/90 backdrop-blur md:block">
+    <header className="nav-enter fixed inset-x-0 top-0 z-50">
+      <div
+        className={cn(
+          "hidden border-b transition-all duration-500 md:block",
+          scrolled
+            ? "border-border/70 bg-background/90 backdrop-blur"
+            : "border-transparent bg-transparent",
+        )}
+      >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
           <span className="flex items-center gap-2">
             <Clock className="size-3.5 text-primary" />
             {CONTACT.hoursShort}
           </span>
           <span className="flex items-center gap-6">
-            <span className="tracking-[0.2em]">{CONTACT.address}</span>
+            <a
+              href={CONTACT.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="tracking-[0.2em] transition-colors hover:text-primary"
+            >
+              {CONTACT.address}
+            </a>
             <a
               href={CONTACT.phoneHref}
               className="flex items-center gap-2 font-semibold text-foreground transition-colors hover:text-primary"
@@ -42,9 +56,9 @@ export function Navbar() {
       <div
         className={cn(
           "border-b transition-all duration-500",
-          scrolled
+          scrolled || menuOpen
             ? "border-border/80 bg-background/95 backdrop-blur-xl"
-            : "border-transparent bg-background/40 backdrop-blur-sm",
+            : "border-transparent bg-transparent",
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 md:px-8 md:py-4">
@@ -72,35 +86,42 @@ export function Navbar() {
             <button
               aria-label="Меню"
               onClick={() => setMenuOpen((v) => !v)}
-              className="flex size-10 items-center justify-center rounded-md border border-border text-foreground lg:hidden"
+              className="flex size-10 items-center justify-center rounded-md border border-border text-foreground transition-colors hover:border-primary/50 lg:hidden"
             >
               {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>
           </div>
         </div>
 
-        {menuOpen && (
-          <div className="border-t border-border bg-background/98 px-5 py-4 backdrop-blur-xl lg:hidden">
-            <nav className="flex flex-col">
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="border-b border-border/60 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground"
-                >
-                  {link.label}
+        <div
+          className={cn(
+            "grid overflow-hidden border-t border-border bg-background/98 backdrop-blur-xl transition-all duration-300 ease-out lg:hidden",
+            menuOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] border-transparent opacity-0",
+          )}
+        >
+          <div className="min-h-0">
+            <div className="px-5 py-4">
+              <nav className="flex flex-col">
+                {NAV_LINKS.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="border-b border-border/60 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-primary"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+              <div className="mt-4 flex flex-col gap-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                <a href={CONTACT.phoneHref} className="font-semibold text-foreground">
+                  {CONTACT.phone}
                 </a>
-              ))}
-            </nav>
-            <div className="mt-4 flex flex-col gap-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              <a href={CONTACT.phoneHref} className="font-semibold text-foreground">
-                {CONTACT.phone}
-              </a>
-              <span>{CONTACT.hoursShort}</span>
+                <span>{CONTACT.hoursShort}</span>
+              </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </header>
   );
