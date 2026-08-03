@@ -61,8 +61,8 @@ export function Navbar() {
             : "border-transparent bg-transparent",
         )}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 md:px-8 md:py-4">
-          <Logo />
+        <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-2 px-4 sm:gap-3 sm:px-5 md:h-auto md:gap-4 md:px-8 md:py-4">
+          <Logo className="shrink min-w-0" />
 
           <nav className="hidden items-center gap-8 lg:flex">
             {NAV_LINKS.map((link) => (
@@ -76,17 +76,19 @@ export function Navbar() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             <Button
               onClick={() => open()}
-              className="h-10 px-5 text-xs font-bold uppercase tracking-[0.2em] shadow-crimson"
+              className="h-9 px-3 text-[10px] font-bold uppercase tracking-[0.14em] shadow-crimson sm:h-10 sm:px-5 sm:text-xs sm:tracking-[0.2em]"
             >
               Записаться
             </Button>
             <button
-              aria-label="Меню"
+              type="button"
+              aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
+              aria-expanded={menuOpen}
               onClick={() => setMenuOpen((v) => !v)}
-              className="flex size-10 items-center justify-center rounded-md border border-border text-foreground transition-colors hover:border-primary/50 lg:hidden"
+              className="flex size-9 items-center justify-center rounded-md border border-border text-foreground transition-colors hover:border-primary/50 sm:size-10 lg:hidden"
             >
               {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>
@@ -100,7 +102,7 @@ export function Navbar() {
           )}
         >
           <div className="min-h-0">
-            <div className="px-5 py-4">
+            <div className="px-4 py-4 sm:px-5">
               <nav className="flex flex-col">
                 {NAV_LINKS.map((link) => (
                   <a
