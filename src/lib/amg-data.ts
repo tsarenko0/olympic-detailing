@@ -31,6 +31,7 @@ export const INSTAGRAM_REELS = [
 
 export const NAV_LINKS = [
   { label: "Услуги", href: "#services" },
+  { label: "О нас", href: "#why-us" },
   { label: "Галерея", href: "#gallery" },
   { label: "FAQ", href: "#faq" },
   { label: "Контакты", href: "#contacts" },

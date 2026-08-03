@@ -49,9 +49,9 @@ export function ServiceDetailsDialog({
             </DialogDescription>
           </DialogHeader>
 
-          <div className="space-y-3 text-sm leading-relaxed text-[oklch(0.9_0.01_20)] md:text-[15px]">
-            {service.details.map((paragraph) => (
-              <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+          <div className="space-y-3 text-sm leading-relaxed text-muted-foreground md:text-[15px]">
+            {service.details.map((paragraph, index) => (
+              <p key={`${service.id}-${index}`}>{paragraph}</p>
             ))}
           </div>
 

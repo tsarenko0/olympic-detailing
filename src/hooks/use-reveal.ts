@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { prefersReducedMotion } from "@/lib/prefers-reduced-motion";
 
-const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const IN_VIEW_FALLBACK_MS = 1200;
 
 function isInViewport(node: HTMLElement) {
@@ -17,10 +17,7 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>() {
   useEffect(() => {
     const node = ref.current;
 
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia(REDUCED_MOTION_QUERY).matches
-    ) {
+    if (prefersReducedMotion()) {
       setArmed(true);
       setVisible(true);
       return;

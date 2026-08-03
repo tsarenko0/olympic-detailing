@@ -1,7 +1,8 @@
-import film from "@/assets/service-film.jpg";
-import sound from "@/assets/service-sound.jpg";
-import ceramic from "@/assets/service-ceramic.jpg";
 import ceramicWork from "@/assets/service-ceramic-work.png";
+import polishing from "@/assets/service-polishing.png";
+import ppf from "@/assets/service-ppf.png";
+import liquidArmor from "@/assets/service-liquid-armor.png";
+import soundproofing from "@/assets/service-soundproofing.png";
 
 export type ServiceItem = {
   id: string;
@@ -9,7 +10,7 @@ export type ServiceItem = {
   tag: string;
   teaser: string;
   details: string[];
-  image?: string;
+  image: string;
   imageAlt: string;
 };
 
@@ -24,7 +25,7 @@ export const SERVICES_CATALOG: ServiceItem[] = [
       "Полировка кузова — самый простой способ вернуть автомобилю привлекательный вид. Правильно выполненная полировка придаст поверхности блеск и устранит неглубокие царапины, следы от сколов, птичьего помёта, древесных почек и дорожных реагентов.",
       "Даже у самых бережливых автовладельцев со временем появляются царапины и «паутинка» — часто из‑за грязной тряпки или некачественной мойки. В городе это обычная история, и мы умеем возвращать лаку глубину и чистоту отражения.",
     ],
-    image: ceramic,
+    image: polishing,
     imageAlt: "Полировка кузова автомобиля",
   },
   {
@@ -50,7 +51,7 @@ export const SERVICES_CATALOG: ServiceItem[] = [
       "Антигравийная плёнка — один из лучших способов защитить кузов автомобиля при трассовой эксплуатации. Мы используем плотные премиальные плёнки американских и европейских производителей, чтобы защитить ЛКП от сколов, царапин и мелких повреждений.",
       "Через несколько лет плёнку можно снять — и под ней останется заводской лак в состоянии «как новый».",
     ],
-    image: film,
+    image: ppf,
     imageAlt: "Оклейка антигравийной плёнкой",
   },
   {
@@ -63,6 +64,7 @@ export const SERVICES_CATALOG: ServiceItem[] = [
       "Жидкое бронирование — съёмное автомобильное покрытие, которое полностью заменяет прозрачные полиуретановые плёнки. Оно защищает кузов от сколов, царапин и реагентов.",
       "Жидкая броня Protect наносится как краска и после высыхания образует абсолютно прозрачную глянцевую или матовую плёнку толщиной более 200 микрон. Технология Protect Sprayable Shield (PSS) позволяет наносить как прозрачные, так и цветные покрытия на металл, пластик, устойчивый к органическим растворителям, и даже хром.",
     ],
+    image: liquidArmor,
     imageAlt: "Жидкое бронирование кузова Protect",
   },
   {
@@ -75,10 +77,12 @@ export const SERVICES_CATALOG: ServiceItem[] = [
       "Комфорт в автомобиле складывается из множества факторов. Один из них — низкий уровень шума и вибраций, которые ощущают водитель и пассажиры в движении. Улучшить эти характеристики помогают современные шумоизоляционные материалы.",
       "Даже у самых дорогих автомобилей с хорошей заводской шумоизоляцией есть слабые зоны. Мы работаем с импортными бизнес‑классами и эксклюзивными моделями разных ценовых сегментов и точно знаем, как добиться нужного результата, соблюдая весь технологический процесс.",
     ],
-    image: sound,
+    image: soundproofing,
     imageAlt: "Шумоизоляция салона автомобиля",
   },
 ];
+
+export const CONSULTATION_SERVICE = "Другое / консультация" as const;
 
 export const SERVICES_OPTIONS = [
   "Полировка кузова",
@@ -86,5 +90,14 @@ export const SERVICES_OPTIONS = [
   "Бронирование антигравийной плёнкой",
   "Жидкое бронирование кузова",
   "Шумоизоляция",
-  "Другое / консультация",
+  CONSULTATION_SERVICE,
 ] as const;
+
+const catalogTitles = SERVICES_CATALOG.map((service) => service.title);
+if (import.meta.env.DEV) {
+  for (const title of catalogTitles) {
+    if (!(SERVICES_OPTIONS as readonly string[]).includes(title)) {
+      throw new Error(`Услуга "${title}" отсутствует в SERVICES_OPTIONS`);
+    }
+  }
+}

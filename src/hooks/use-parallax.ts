@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
+import { prefersReducedMotion } from "@/lib/prefers-reduced-motion";
 
 const PARALLAX_RANGE_PX = 90;
-const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
 export function useParallax(strength = PARALLAX_RANGE_PX) {
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (window.matchMedia(REDUCED_MOTION_QUERY).matches) return;
+    if (typeof window === "undefined" || prefersReducedMotion()) return;
 
     let frame = 0;
 

@@ -25,7 +25,7 @@ export function Navbar() {
           "hidden border-b transition-all duration-500 md:block",
           scrolled
             ? "border-border/70 bg-background/90 backdrop-blur"
-            : "border-transparent bg-transparent",
+            : "border-transparent bg-background/70 backdrop-blur-md",
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">

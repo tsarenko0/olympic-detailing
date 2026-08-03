@@ -1,9 +1,7 @@
+import { SERVICES_CATALOG } from "@/lib/services-data";
+
 const MARQUEE_ITEMS = [
-  "Полировка кузова",
-  "Керамика",
-  "Антигравийная плёнка",
-  "Жидкая броня",
-  "Шумоизоляция",
+  ...SERVICES_CATALOG.map((service) => service.tag),
   "AMG Detailing",
   "Краснодар",
 ] as const;

@@ -82,7 +82,6 @@
     var(--crimson-glow) 100%
   );
   --shadow-crimson: 0 18px 50px -18px oklch(0.57 0.235 27.5 / 0.65);
-  --shadow-deep: 0 30px 70px -30px oklch(0 0 0 / 0.9);
 }
 
 @layer base {
@@ -163,25 +162,6 @@
     radial-gradient(ellipse 90% 70% at 100% 0%, oklch(0.38 0.1 27 / 0.4), transparent 55%),
     radial-gradient(ellipse 60% 50% at 0% 100%, oklch(0.3 0.07 25 / 0.28), transparent 60%),
     linear-gradient(180deg, oklch(0.19 0.035 25), oklch(0.145 0.022 22));
-}
-
-@utility glow-ring {
-  position: relative;
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    pointer-events: none;
-    border: 1px solid transparent;
-    transition: border-color 0.4s ease, box-shadow 0.4s ease;
-  }
-  &:hover::after {
-    border-color: oklch(0.57 0.235 27.5 / 0.7);
-    box-shadow: 0 0 0 1px oklch(0.57 0.235 27.5 / 0.25),
-      0 20px 60px -25px oklch(0.57 0.235 27.5 / 0.7),
-      inset 0 0 40px -20px oklch(0.57 0.235 27.5 / 0.5);
-  }
 }
 
 @utility reveal {
@@ -339,19 +319,6 @@
   animation: hero-text-enter 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-@utility hero-line-mask {
-  overflow: hidden;
-  display: block;
-  padding-block: 0.08em;
-  margin-block: -0.08em;
-}
-
-@utility hero-line-inner {
-  display: block;
-  padding-block: 0.04em;
-  animation: hero-line-reveal 1.05s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
 @utility hero-gleam {
   position: relative;
   overflow: hidden;
@@ -463,18 +430,6 @@
   }
 }
 
-@utility reel-cascade {
-  transition:
-    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@utility service-tilt {
-  transform-style: preserve-3d;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
-}
-
 @utility scan-line {
   animation: marquee-line 4.5s linear infinite;
 }
@@ -576,17 +531,6 @@
   }
 }
 
-@keyframes hero-line-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(110%);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 @keyframes hero-gleam {
   0%,
   55% {
@@ -661,14 +605,9 @@
   }
 }
 
-@utility scan-line {
-  animation: marquee-line 4.5s linear infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .hero-enter,
   .hero-text-enter,
-  .hero-line-inner,
   .hero-gleam::after,
   .hero-orb,
   .hero-stat-pop,

@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { toast } from "sonner";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -8,20 +7,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { SERVICES_OPTIONS } from "@/lib/amg-data";
-import { submitContactLead } from "@/lib/submit-contact-lead";
-import { LeadFormFields, type LeadFormValues } from "./LeadFormFields";
-
-const EMPTY_VALUES: LeadFormValues = {
-  name: "",
-  phone: "",
-  carBrand: "",
-  service: "",
-};
-
-function isServiceOption(value: string): value is (typeof SERVICES_OPTIONS)[number] {
-  return (SERVICES_OPTIONS as readonly string[]).includes(value);
-}
+import { EMPTY_LEAD_VALUES, isServiceOption, useLeadFormState } from "@/hooks/use-lead-form";
+import { LeadFormFields } from "./LeadFormFields";
 
 export function LeadModal({
   open,
@@ -32,50 +19,24 @@ export function LeadModal({
   onOpenChange: (open: boolean) => void;
   presetService?: string | undefined;
 }) {
-  const [values, setValues] = useState<LeadFormValues>(EMPTY_VALUES);
-  const [pending, setPending] = useState(false);
+  const { values, pending, patchValues, setValues, submit } = useLeadFormState();
 
   useEffect(() => {
     if (!open) return;
     setValues({
-      ...EMPTY_VALUES,
+      ...EMPTY_LEAD_VALUES,
       service: presetService && isServiceOption(presetService) ? presetService : "",
     });
-  }, [open, presetService]);
+  }, [open, presetService, setValues]);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (pending) return;
-
-    if (!values.carBrand.trim() || !isServiceOption(values.service)) {
-      toast.error("Заполните все поля", {
-        description: "Укажите марку авто и выберите услугу.",
-      });
-      return;
-    }
-
-    setPending(true);
-    try {
-      await submitContactLead({
-        data: {
-          name: values.name,
-          phone: values.phone,
-          carBrand: values.carBrand.trim(),
-          service: values.service,
-        },
-      });
-      onOpenChange(false);
-      toast.success("Спасибо! Мы перезвоним вам", {
-        description: "Наш мастер свяжется с вами в рабочее время: 9:30 — 19:00.",
-      });
-      setValues(EMPTY_VALUES);
-    } catch {
-      toast.error("Не удалось отправить заявку", {
-        description: "Проверьте данные или позвоните нам напрямую.",
-      });
-    } finally {
-      setPending(false);
-    }
+    const ok = await submit({
+      successTitle: "Спасибо! Мы перезвоним вам",
+      successDescription: "Наш мастер свяжется с вами в рабочее время: 9:30 — 19:00.",
+      onSuccess: () => onOpenChange(false),
+    });
+    if (ok) setValues(EMPTY_LEAD_VALUES);
   };
 
   return (
@@ -92,11 +53,7 @@ export function LeadModal({
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="mt-2 space-y-4">
-          <LeadFormFields
-            idPrefix="lead-modal"
-            values={values}
-            onChange={(patch) => setValues((prev) => ({ ...prev, ...patch }))}
-          />
+          <LeadFormFields idPrefix="lead-modal" values={values} onChange={patchValues} />
 
           <Button
             type="submit"

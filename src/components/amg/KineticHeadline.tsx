@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { prefersReducedMotion } from "@/lib/prefers-reduced-motion";
 import { cn } from "@/lib/utils";
 
 const SCRAMBLE_GLYPHS =
@@ -6,7 +7,6 @@ const SCRAMBLE_GLYPHS =
 const PLACEHOLDER_GLYPH = "◆";
 const SCRAMBLE_TICK_MS = 32;
 const LOCK_STAGGER_MS = 38;
-const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
 type HeadlineLine = {
   text: string;
@@ -21,10 +21,6 @@ type LetterCell = {
   lineIndex: number;
   letterIndex: number;
 };
-
-function prefersReducedMotion() {
-  return typeof window !== "undefined" && window.matchMedia(REDUCED_MOTION_QUERY).matches;
-}
 
 function randomGlyph(seed: number) {
   return SCRAMBLE_GLYPHS[seed % SCRAMBLE_GLYPHS.length] ?? "А";

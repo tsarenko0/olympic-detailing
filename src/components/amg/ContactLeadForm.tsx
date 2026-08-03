@@ -1,57 +1,17 @@
-import { useState } from "react";
-import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { SERVICES_OPTIONS } from "@/lib/amg-data";
-import { submitContactLead } from "@/lib/submit-contact-lead";
-import { LeadFormFields, type LeadFormValues } from "./LeadFormFields";
-
-const EMPTY_VALUES: LeadFormValues = {
-  name: "",
-  phone: "",
-  carBrand: "",
-  service: "",
-};
-
-function isServiceOption(value: string): value is (typeof SERVICES_OPTIONS)[number] {
-  return (SERVICES_OPTIONS as readonly string[]).includes(value);
-}
+import { LeadFormFields } from "./LeadFormFields";
+import { EMPTY_LEAD_VALUES, useLeadFormState } from "@/hooks/use-lead-form";
 
 export function ContactLeadForm() {
-  const [values, setValues] = useState<LeadFormValues>(EMPTY_VALUES);
-  const [pending, setPending] = useState(false);
+  const { values, pending, patchValues, setValues, submit } = useLeadFormState();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (pending) return;
-
-    if (!values.carBrand.trim() || !isServiceOption(values.service)) {
-      toast.error("Заполните все поля", {
-        description: "Укажите марку авто и выберите услугу.",
-      });
-      return;
-    }
-
-    setPending(true);
-    try {
-      await submitContactLead({
-        data: {
-          name: values.name,
-          phone: values.phone,
-          carBrand: values.carBrand.trim(),
-          service: values.service,
-        },
-      });
-      toast.success("Заявка отправлена", {
-        description: "Мы свяжемся с вами в рабочее время: 9:30 — 19:00.",
-      });
-      setValues(EMPTY_VALUES);
-    } catch {
-      toast.error("Не удалось отправить заявку", {
-        description: "Проверьте данные или позвоните нам напрямую.",
-      });
-    } finally {
-      setPending(false);
-    }
+    const ok = await submit({
+      successTitle: "Заявка отправлена",
+      successDescription: "Мы свяжемся с вами в рабочее время: 9:30 — 19:00.",
+    });
+    if (ok) setValues(EMPTY_LEAD_VALUES);
   };
 
   return (
@@ -66,11 +26,7 @@ export function ContactLeadForm() {
         </p>
       </div>
 
-      <LeadFormFields
-        idPrefix="contact-lead"
-        values={values}
-        onChange={(patch) => setValues((prev) => ({ ...prev, ...patch }))}
-      />
+      <LeadFormFields idPrefix="contact-lead" values={values} onChange={patchValues} />
 
       <div className="mt-auto">
         <Button
