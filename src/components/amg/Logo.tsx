@@ -7,15 +7,15 @@ export function Logo({ className }: { className?: string }) {
       <img
         src={logo}
         alt="AMG — детейлинг-студия в Краснодаре"
-        width={48}
-        height={48}
-        className="size-10 rounded-full ring-1 ring-border md:size-11"
+        width={56}
+        height={56}
+        className="size-12 rounded-full ring-1 ring-border md:size-14"
       />
       <span className="flex flex-col leading-none">
-        <span className="font-display text-lg font-bold uppercase tracking-[0.2em] md:text-xl">
+        <span className="font-display text-xl font-bold uppercase tracking-[0.2em] md:text-2xl">
           AMG
         </span>
-        <span className="mt-1 text-[9px] uppercase tracking-[0.3em] text-muted-foreground">
+        <span className="mt-1.5 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
           detailing studio
         </span>
       </span>
