@@ -3,11 +3,31 @@ export const CONTACT = {
   phone: "+7 (918) 965-95-95",
   phoneHref: "tel:+79189659595",
   whatsapp: "https://wa.me/79189659595",
-  instagram: "https://instagram.com",
+  instagram: "https://www.instagram.com/amg.detailing.krd",
   hours: "Ежедневно с 9:30 до 19:00",
   hoursShort: "9:30 — 19:00",
   address: "Краснодар, улица Мачуги, 157",
+  mapsUrl:
+    "https://yandex.ru/maps/?um=constructor%3A3ee8ca76d58737ca662dec5c707692c09362d6ea377feefb091bae6a7042cd1b&source=constructorLink",
 };
+
+export const INSTAGRAM_REELS = [
+  {
+    href: "https://www.instagram.com/reel/DW_Iu0xCK6P/",
+    title: "Работа AMG в Instagram — рилс 1",
+    video: "/reels/reel-1.mp4",
+  },
+  {
+    href: "https://www.instagram.com/reel/DWmc5rrCKdN/",
+    title: "Работа AMG в Instagram — рилс 2",
+    video: "/reels/reel-2.mp4",
+  },
+  {
+    href: "https://www.instagram.com/reel/DWemcHlCIRp/",
+    title: "Работа AMG в Instagram — рилс 3",
+    video: "/reels/reel-3.mp4",
+  },
+] as const;
 
 export const NAV_LINKS = [
   { label: "Услуги", href: "#services" },
@@ -16,13 +36,7 @@ export const NAV_LINKS = [
   { label: "Контакты", href: "#contacts" },
 ];
 
-export const SERVICES_OPTIONS = [
-  "Оклейка плёнкой",
-  "Шумоизоляция",
-  "Полировка и керамика",
-  "Химчистка салона",
-  "Другое / консультация",
-];
+export { SERVICES_OPTIONS } from "@/lib/services-data";
 
 export const FAQ_ITEMS = [
   {
