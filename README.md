@@ -36,7 +36,7 @@ Create a high-end, visual-heavy, premium car detailing landing page for a studio
 
    - Bold Headline: "Премиальный детейлинг авто в Краснодаре".
 
-   - Subtitle: "Защита кузова, оклейка пленками и профессиональная шумоизоляция для вашего автомобиля".
+   - Subtitle: "Защита кузова, оклейка пленками и профессиональная шумоизоляция для вашей машины".
 
    - Primary CTA Button: "Получить консультацию" (Opens a pop-up modal form on click).
 

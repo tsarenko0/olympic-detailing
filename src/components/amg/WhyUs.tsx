@@ -17,6 +17,14 @@ const WHY_ITEMS = [
     title: "Гарантия",
     text: "Работаем со строгим соблюдением всех технологий и несём гарантийные обязательства практически по каждой детейлинг-услуге, выполненной нашим центром.",
   },
+  {
+    title: "Оплата",
+    text: "Принимаем любой удобный способ оплаты — наличные, карта или перевод. Выбирайте тот формат, который комфортен именно вам.",
+  },
+  {
+    title: "Специалисты",
+    text: "Работы выполняют квалифицированные мастера из постоянного штата — проверенные специалисты, а не разовые подрядчики.",
+  },
 ] as const;
 
 function PhotoSlot({
@@ -82,7 +90,9 @@ export function WhyUs() {
                 key={item.title}
                 delay={index * 90}
                 variant={index % 2 === 0 ? "left" : "up"}
-                {...(index === 2 ? { className: "sm:col-span-2 sm:max-w-md" } : {})}
+                {...(index === WHY_ITEMS.length - 1 && WHY_ITEMS.length % 2 === 1
+                  ? { className: "sm:col-span-2 sm:max-w-md" }
+                  : {})}
               >
                 <article className="space-y-3">
                   <div className="flex items-center gap-3">

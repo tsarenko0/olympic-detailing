@@ -17,9 +17,9 @@ const HEADLINE_LINES = [
 ] as const;
 
 const STATS = [
-  { icon: Shield, label: "Гарантия до 24 месяцев" },
-  { icon: Sparkles, label: "Плёнки и керамика премиум" },
-  { icon: Volume2, label: "Тишина в салоне −8 дБ" },
+  { icon: Shield, label: "Бессрочная гарантия на оклейку" },
+  { icon: Sparkles, label: "Не пользуемся китайским сырьём" },
+  { icon: Volume2, label: "Шумоизоляцию выполняют специалисты с акустическим образованием" },
 ];
 
 export function Hero() {
@@ -75,20 +75,13 @@ export function Hero() {
       </div>
 
       <div className="relative mx-auto flex w-full min-w-0 max-w-7xl flex-col justify-center px-5 pb-24 md:px-8 md:pb-28">
-        <span
-          className="hero-text-enter pulse-glow inline-flex w-fit items-center gap-2 rounded-full border border-primary/40 bg-background/60 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-primary backdrop-blur"
-          style={{ animationDelay: "300ms" }}
-        >
-          Детейлинг-студия AMG · Краснодар
-        </span>
-
         <KineticHeadline lines={HEADLINE_LINES} />
 
         <p
           className="hero-text-enter mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
           style={{ animationDelay: `${SUBCOPY_DELAY_MS}ms` }}
         >
-          Защита кузова, оклейка пленками и профессиональная шумоизоляция для вашего автомобиля
+          Защита кузова, оклейка пленками и профессиональная шумоизоляция для вашей машины
         </p>
 
         <div
