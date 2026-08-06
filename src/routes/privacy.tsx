@@ -2,20 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Footer } from "@/components/amg/Footer";
 import { Logo } from "@/components/amg/Logo";
 import { CONTACT } from "@/lib/amg-data";
-
-const title = "Политика конфиденциальности — AMG Detailing";
-const description =
-  "Политика обработки персональных данных AMG Detailing: какие данные собираем и как используем.";
+import { privacyHeadMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/privacy")({
-  head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-    ],
-  }),
+  head: () => privacyHeadMeta(),
   component: PrivacyPage,
 });
 

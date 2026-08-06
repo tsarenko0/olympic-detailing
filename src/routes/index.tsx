@@ -9,28 +9,18 @@ import { Faq } from "@/components/amg/Faq";
 import { InstagramGrid } from "@/components/amg/InstagramGrid";
 import { Contacts } from "@/components/amg/Contacts";
 import { Footer } from "@/components/amg/Footer";
-
-const title = "AMG Detailing — премиальный детейлинг в Краснодаре";
-const description =
-  "AMG Detailing в Краснодаре: оклейка защитными плёнками, шумоизоляция, полировка и керамика. Ежедневно 9:30–19:00.";
+import { JsonLd } from "@/components/amg/JsonLd";
+import { buildHomeJsonLd, homeHeadMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () => homeHeadMeta(),
   component: Index,
 });
 
 function Index() {
   return (
     <LeadModalProvider>
+      <JsonLd data={buildHomeJsonLd()} />
       <Navbar />
       <main className="min-w-0">
         <Hero />

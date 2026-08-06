@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
+import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, SEO_BRAND, absoluteUrl } from "@/lib/seo";
 
 
 function NotFoundComponent() {
@@ -75,40 +76,41 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AMG Detailing — детейлинг в Краснодаре" },
-      {
-        name: "description",
-        content:
-          "AMG Detailing в Краснодаре: оклейка плёнкой, шумоизоляция, керамика и химчистка.",
-      },
-      { property: "og:title", content: "AMG Detailing — детейлинг в Краснодаре" },
-      {
-        property: "og:description",
-        content: "Оклейка плёнкой, шумоизоляция, полировка и керамика. Краснодар, ул. Мачуги, 157.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap",
-      },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
-      { rel: "icon", href: "/favicon.png", type: "image/png" },
-      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
-    ],
-  }),
+  head: () => {
+    const canonical = absoluteUrl("/");
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { title: DEFAULT_TITLE },
+        { name: "description", content: DEFAULT_DESCRIPTION },
+        { name: "robots", content: "index, follow" },
+        { property: "og:locale", content: "ru_RU" },
+        { property: "og:site_name", content: SEO_BRAND },
+        { property: "og:title", content: DEFAULT_TITLE },
+        { property: "og:description", content: DEFAULT_DESCRIPTION },
+        { property: "og:type", content: "website" },
+        ...(canonical ? [{ property: "og:url", content: canonical }] : []),
+        { name: "twitter:card", content: "summary_large_image" },
+      ],
+      links: [
+        {
+          rel: "stylesheet",
+          href: appCss,
+        },
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap",
+        },
+        { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+        { rel: "icon", href: "/favicon.png", type: "image/png" },
+        { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+        ...(canonical ? [{ rel: "canonical", href: canonical }] : []),
+      ],
+    };
+  },
 
   shellComponent: RootShell,
   component: RootComponent,
@@ -118,7 +120,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <head>
         <HeadContent />
       </head>
