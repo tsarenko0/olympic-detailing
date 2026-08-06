@@ -12,7 +12,7 @@ const SUBCOPY_DELAY_MS = 1750;
 const CTA_DELAY_MS = 1900;
 
 const HEADLINE_LINES = [
-  { text: "AMG Detailing", accent: false },
+  { text: "Премиальный детейлинг авто", accent: false },
   { text: "в Краснодаре", accent: true },
 ] as const;
 
