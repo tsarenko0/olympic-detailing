@@ -2,11 +2,8 @@ import { Instagram } from "lucide-react";
 import { CONTACT, INSTAGRAM_REELS } from "@/lib/amg-data";
 import { PrivacyNote } from "./PrivacyNote";
 import { Reveal } from "./Reveal";
-import poster1 from "@/assets/gallery-1.jpg";
 import poster2 from "@/assets/gallery-6.jpg";
-import poster3 from "@/assets/gallery-3.jpg";
 
-const REEL_POSTERS = [poster1, poster2, poster3] as const;
 const REEL_REVEAL_STEP_MS = 160;
 
 export function InstagramGrid() {
@@ -41,7 +38,7 @@ export function InstagramGrid() {
 
           <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4" style={{ perspective: "1200px" }}>
             {INSTAGRAM_REELS.map((reel, i) => (
-              <Reveal key={reel.href} delay={i * REEL_REVEAL_STEP_MS} variant="cascade">
+              <Reveal key={reel.video} delay={i * REEL_REVEAL_STEP_MS} variant="cascade">
                 <a
                   href={reel.href}
                   target="_blank"
@@ -51,16 +48,16 @@ export function InstagramGrid() {
                   style={{ transitionDelay: `${i * 40}ms` }}
                 >
                   <video
+                    key={reel.video}
                     className="size-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    poster={REEL_POSTERS[i]}
+                    {...(i === 1 ? { poster: poster2 } : {})}
+                    src={reel.video}
                     autoPlay
                     muted
                     loop
                     playsInline
-                    preload="metadata"
-                  >
-                    <source src={reel.video} type="video/mp4" />
-                  </video>
+                    preload="auto"
+                  />
                   <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-60" />
                   <span className="absolute bottom-2 left-2 right-2 flex items-center justify-center gap-1.5 rounded-sm bg-background/70 px-2 py-1 text-[9px] font-semibold uppercase tracking-widest text-foreground backdrop-blur transition-transform duration-500 group-hover:-translate-y-1 sm:text-[10px]">
                     <Instagram className="size-3 shrink-0 text-primary" />

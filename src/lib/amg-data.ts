@@ -21,7 +21,7 @@ export const INSTAGRAM_REELS = [
   {
     href: "https://www.instagram.com/reel/DW_Iu0xCK6P/",
     title: "Работа AMG в Instagram — рилс 1",
-    video: "/reels/reel-1.mp4",
+    video: "/reels/new-reel-1.mp4",
   },
   {
     href: "https://www.instagram.com/reel/DWmc5rrCKdN/",
@@ -31,7 +31,7 @@ export const INSTAGRAM_REELS = [
   {
     href: "https://www.instagram.com/reel/DWemcHlCIRp/",
     title: "Работа AMG в Instagram — рилс 3",
-    video: "/reels/reel-3.mp4",
+    video: "/reels/new-reel-2.mp4",
   },
 ] as const;
 
