@@ -12,7 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
-import { YandexMetrika } from "@/components/amg/YandexMetrika";
+import { CookieConsent } from "@/components/amg/CookieConsent";
 import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, SEO_BRAND, absoluteUrl } from "@/lib/seo";
 
 
@@ -127,7 +127,6 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         {children}
-        <YandexMetrika />
         <Scripts />
       </body>
     </html>
@@ -142,6 +141,7 @@ function RootComponent() {
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <Toaster position="top-center" theme="dark" />
+      <CookieConsent />
     </QueryClientProvider>
   );
 }
