@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
+import { YandexMetrika } from "@/components/amg/YandexMetrika";
 import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, SEO_BRAND, absoluteUrl } from "@/lib/seo";
 
 
@@ -126,6 +127,7 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         {children}
+        <YandexMetrika />
         <Scripts />
       </body>
     </html>

@@ -16,5 +16,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-# После деплоя укажите абсолютный URL sitemap, например:
-# Sitemap: https://your-domain.ru/sitemap.xml
+Sitemap: https://www.amg-krd.ru/sitemap.xml
