@@ -41,7 +41,7 @@ export function LeadModal({
         <span className="absolute inset-x-0 top-0 h-px bg-gradient-crimson" />
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold uppercase tracking-wide">
-            Записаться в <span className="text-gradient-crimson">AMG</span>
+            Записаться в <span className="text-gradient-crimson">Olympic</span>
           </DialogTitle>
           <DialogDescription className="text-sm text-muted-foreground">
             Оставьте имя и телефон — перезвоним и проконсультируем.

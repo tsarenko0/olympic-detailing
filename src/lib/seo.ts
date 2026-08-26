@@ -3,52 +3,46 @@ import { CONTACT, FAQ_ITEMS } from "@/lib/amg-data";
 /** Production origin without trailing slash, e.g. https://example.com */
 export const SITE_ORIGIN = String(import.meta.env["VITE_SITE_URL"] ?? "").replace(/\/$/, "");
 
-export const SEO_BRAND = "AMG Detailing";
+export const SEO_BRAND = "Olympic Detailing";
 
 export const SEO_ALTERNATE_NAMES = [
-  "AMG",
-  "АМГ",
-  "АМГ Детейлинг",
-  "Амг детейлинг",
-  "AMG Детейлинг",
-  "AMG Краснодар",
-  "АМГ Краснодар",
-  "Амг Краснодар",
-  "AMG Detailing Краснодар",
-  "детейлинг Краснодар",
+  "Olympic",
+  "Olympic Detailing",
+  "Олимпик Детейлинг",
+  "Олимпик детейлинг",
+  "Olympic Detailing Минск",
+  "Олимпик Детейлинг Минск",
+  "детейлинг Минск",
 ] as const;
 
 export const HOME_TITLE =
-  "AMG Detailing Краснодар — АМГ детейлинг, оклейка плёнкой и шумоизоляция";
+  "Olympic Detailing Минск — детейлинг, оклейка плёнкой и шумоизоляция";
 
 export const HOME_DESCRIPTION =
-  "AMG Detailing (АМГ детейлинг) в Краснодаре: оклейка антигравийной плёнкой, шумоизоляция, керамика и полировка. Студия на ул. Мачуги, 157. Ежедневно 9:30–19:00. Звоните: +7 (918) 965-95-95.";
+  "Olympic Detailing в Минске: оклейка антигравийной плёнкой, шумоизоляция, керамика и полировка. Студия на Михаловская 18. Ежедневно 9:30–19:00. Звоните: +375 29 314 5777.";
 
 export const HOME_KEYWORDS = [
-  "AMG Detailing",
-  "АМГ детейлинг",
-  "Амг детейлинг",
-  "AMG Краснодар",
-  "АМГ Краснодар",
-  "Амг Краснодар",
-  "детейлинг Краснодар",
-  "оклейка плёнкой Краснодар",
-  "антигравийная плёнка Краснодар",
-  "шумоизоляция авто Краснодар",
-  "керамика кузова Краснодар",
-  "полировка авто Краснодар",
-  "AMG Detailing Мачуги",
+  "Olympic Detailing",
+  "Олимпик детейлинг",
+  "Olympic Detailing Минск",
+  "детейлинг Минск",
+  "оклейка плёнкой Минск",
+  "антигравийная плёнка Минск",
+  "шумоизоляция авто Минск",
+  "керамика кузова Минск",
+  "полировка авто Минск",
+  "Olympic Detailing Михаловская",
 ].join(", ");
 
-export const PRIVACY_TITLE = "Политика конфиденциальности — AMG Detailing Краснодар";
+export const PRIVACY_TITLE = "Политика конфиденциальности — Olympic Detailing Минск";
 
 export const PRIVACY_DESCRIPTION =
-  "Политика конфиденциальности AMG Detailing (АМГ детейлинг, Краснодар): как обрабатываем имя и телефон из заявок на сайте.";
+  "Политика конфиденциальности Olympic Detailing (Минск): как обрабатываем имя и телефон из заявок на сайте.";
 
-export const DEFAULT_TITLE = "AMG Detailing — детейлинг в Краснодаре | АМГ";
+export const DEFAULT_TITLE = "Olympic Detailing — детейлинг в Минске";
 
 export const DEFAULT_DESCRIPTION =
-  "AMG Detailing (АМГ детейлинг) в Краснодаре: оклейка плёнкой, шумоизоляция, керамика и полировка. ул. Мачуги, 157.";
+  "Olympic Detailing в Минске: оклейка плёнкой, шумоизоляция, керамика и полировка. Михаловская 18.";
 
 export function absoluteUrl(path = "/"): string | undefined {
   if (!SITE_ORIGIN) return undefined;
@@ -70,10 +64,9 @@ export function buildHomeJsonLd() {
     image: absoluteUrl("/favicon.png"),
     address: {
       "@type": "PostalAddress",
-      streetAddress: "улица Мачуги, 157",
-      addressLocality: "Краснодар",
-      addressRegion: "Краснодарский край",
-      addressCountry: "RU",
+      streetAddress: "Михаловская 18",
+      addressLocality: "Минск",
+      addressCountry: "BY",
     },
     openingHoursSpecification: [
       {
@@ -94,9 +87,9 @@ export function buildHomeJsonLd() {
     sameAs: [CONTACT.instagram],
     areaServed: {
       "@type": "City",
-      name: "Краснодар",
+      name: "Минск",
     },
-    priceRange: "₽₽",
+    priceRange: "BYN",
     knowsAbout: [
       "детейлинг",
       "оклейка антигравийной плёнкой",
@@ -148,7 +141,7 @@ export function buildHomeJsonLd() {
       {
         "@type": "ListItem",
         position: 1,
-        name: "Главная — AMG Detailing Краснодар",
+        name: "Главная — Olympic Detailing Минск",
         item: pageUrl,
       },
     ],
@@ -177,8 +170,8 @@ export function homeHeadMeta() {
       { name: "keywords", content: HOME_KEYWORDS },
       { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
       { name: "author", content: SEO_BRAND },
-      { name: "geo.region", content: "RU-KDA" },
-      { name: "geo.placename", content: "Краснодар" },
+      { name: "geo.region", content: "BY-MI" },
+      { name: "geo.placename", content: "Минск" },
       { property: "og:locale", content: "ru_RU" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: SEO_BRAND },

@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 
-const YANDEX_MAP_CONTAINER_ID = "amg-yandex-map";
+const YANDEX_MAP_CONTAINER_ID = "olympic-yandex-map";
 const YANDEX_MAP_CONSTRUCTOR_ID =
-  "3ee8ca76d58737ca662dec5c707692c09362d6ea377feefb091bae6a7042cd1b";
+  "76d3b56f25ab32d3c027830fedd1395576f2be7eadbed4dc05032d9bebb966b0";
 
 const YANDEX_MAP_SCRIPT_SRC =
   `https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A${YANDEX_MAP_CONSTRUCTOR_ID}&width=100%25&height=100%25&lang=ru_RU&scroll=true&id=${YANDEX_MAP_CONTAINER_ID}`;
@@ -37,7 +37,7 @@ export function YandexMap() {
       ref={containerRef}
       id={YANDEX_MAP_CONTAINER_ID}
       className="size-full min-h-[380px]"
-      aria-label="Карта проезда к AMG Detailing"
+      aria-label="Карта проезда к Olympic Detailing"
     />
   );
 }

@@ -21,7 +21,7 @@ export const submitContactLead = createServerFn({ method: "POST" })
     }
 
     const text = [
-      "🆕 Новая заявка с сайта AMG",
+      "🆕 Новая заявка с сайта Olympic Detailing",
       "",
       `👤 Имя: ${data.name}`,
       `📞 Телефон: ${data.phone}`,

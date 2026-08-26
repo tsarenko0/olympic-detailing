@@ -1,16 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, MessageCircle, Phone } from "lucide-react";
-import { CONTACT, NAV_LINKS, PRIVACY_PATH, SITE_CREDIT } from "@/lib/amg-data";
+import { CONTACT, NAV_LINKS, PRIVACY_PATH } from "@/lib/amg-data";
 import { Logo } from "./Logo";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background">
+    <footer className="border-t border-border bg-surface-2">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.2fr_1fr_1fr] md:px-8 md:py-14">
         <div className="space-y-4">
           <Logo />
           <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
-            Премиальный детейлинг в Краснодаре: плёнка, керамика, полировка и шумоизоляция.
+            Премиальный детейлинг в Минске: плёнка, керамика, полировка и шумоизоляция.
           </p>
         </div>
 
@@ -82,8 +82,7 @@ export function Footer() {
 
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-5 text-[11px] uppercase tracking-[0.2em] md:flex-row md:items-center md:justify-between md:px-8">
-          <p className="text-muted-foreground">© {new Date().getFullYear()} AMG Detailing</p>
-          <p className="font-semibold text-bronze">{SITE_CREDIT.label}</p>
+          <p className="text-muted-foreground">© {new Date().getFullYear()} Olympic Detailing</p>
           <Link
             to={PRIVACY_PATH}
             className="text-muted-foreground transition-colors hover:text-primary"

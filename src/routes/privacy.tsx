@@ -34,7 +34,7 @@ function PrivacyPage() {
               Политика конфиденциальности
             </h1>
             <p className="text-sm text-muted-foreground">
-              AMG Detailing · Краснодар · {CONTACT.address}
+              Olympic Detailing · Минск · {CONTACT.address}
             </p>
           </div>
 
@@ -45,7 +45,7 @@ function PrivacyPage() {
               </h2>
               <p>
                 Настоящая политика описывает порядок обработки персональных данных, которые вы
-                передаёте через сайт AMG Detailing при отправке заявки на консультацию или запись.
+                передаёте через сайт Olympic Detailing при отправке заявки на консультацию или запись.
               </p>
             </section>
 
@@ -101,7 +101,7 @@ function PrivacyPage() {
                 6. Контакты
               </h2>
               <p>
-                По вопросам обработки персональных данных обращайтесь в AMG Detailing:{" "}
+                По вопросам обработки персональных данных обращайтесь в Olympic Detailing:{" "}
                 {CONTACT.address}, {CONTACT.phone}, режим работы {CONTACT.hoursShort}.
               </p>
             </section>
