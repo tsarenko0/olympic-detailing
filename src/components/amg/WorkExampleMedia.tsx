@@ -5,7 +5,7 @@ import { prefersReducedMotion } from "@/lib/prefers-reduced-motion";
 import { cn } from "@/lib/utils";
 
 const FRAME_CLASS =
-  "group relative aspect-[16/10] overflow-hidden rounded-md border border-white/12 bg-surface";
+  "group relative aspect-square overflow-hidden rounded-md border border-border bg-surface shadow-[0_10px_24px_-20px_oklch(0.2_0.02_30_/_0.4)]";
 
 export function WorkExampleVideo({ src, alt }: { src: string; alt: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);

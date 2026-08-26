@@ -6,31 +6,40 @@ import { useLeadModal } from "./LeadModalProvider";
 import { Logo } from "./Logo";
 import { cn } from "@/lib/utils";
 
+const SCROLL_SOLID_OFFSET_PX = 48;
+
 export function Navbar() {
   const { open } = useLeadModal();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > SCROLL_SOLID_OFFSET_PX);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const solid = scrolled || menuOpen;
 
   return (
     <header className="nav-enter fixed inset-x-0 top-0 z-50">
       <div
         className={cn(
           "hidden border-b transition-all duration-500 md:block",
-          scrolled
-            ? "border-border/70 bg-background/90 backdrop-blur"
-            : "border-transparent bg-background/70 backdrop-blur-md",
+          solid
+            ? "border-border/70 bg-background/95 backdrop-blur-xl"
+            : "border-white/10 bg-black/25 backdrop-blur-md",
         )}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+        <div
+          className={cn(
+            "mx-auto flex max-w-7xl items-center justify-between px-8 py-2 text-xs uppercase tracking-[0.2em] transition-colors duration-500",
+            solid ? "text-muted-foreground" : "text-white/70",
+          )}
+        >
           <span className="flex items-center gap-2">
-            <Clock className="size-3.5 text-primary" />
+            <Clock className={cn("size-3.5", solid ? "text-primary" : "text-crimson-glow")} />
             {CONTACT.hoursShort}
           </span>
           <span className="flex items-center gap-6">
@@ -44,9 +53,12 @@ export function Navbar() {
             </a>
             <a
               href={CONTACT.phoneHref}
-              className="flex items-center gap-2 font-semibold text-foreground transition-colors hover:text-primary"
+              className={cn(
+                "flex items-center gap-2 font-semibold transition-colors hover:text-primary",
+                solid ? "text-foreground" : "text-white",
+              )}
             >
-              <Phone className="size-3.5 text-primary" />
+              <Phone className={cn("size-3.5", solid ? "text-primary" : "text-crimson-glow")} />
               {CONTACT.phone}
             </a>
           </span>
@@ -56,20 +68,30 @@ export function Navbar() {
       <div
         className={cn(
           "border-b transition-all duration-500",
-          scrolled || menuOpen
-            ? "border-border/80 bg-background/95 backdrop-blur-xl"
-            : "border-transparent bg-transparent",
+          solid
+            ? "border-border/80 bg-background/95 backdrop-blur-xl shadow-[0_8px_24px_-18px_oklch(0.2_0.02_30_/_0.35)]"
+            : "border-white/10 bg-black/30 backdrop-blur-md",
         )}
       >
         <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-2 px-4 sm:gap-3 sm:px-5 md:h-auto md:gap-4 md:px-8 md:py-4">
-          <Logo className="shrink min-w-0" />
+          <Logo
+            className={cn(
+              "shrink min-w-0 transition-colors duration-500",
+              solid ? "text-foreground" : "text-white",
+            )}
+          />
 
           <nav className="hidden items-center gap-8 lg:flex">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="relative text-xs font-bold uppercase tracking-[0.25em] text-primary transition-colors after:absolute after:-bottom-2 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:text-crimson-glow hover:after:w-full"
+                className={cn(
+                  "relative text-xs font-bold uppercase tracking-[0.25em] transition-colors after:absolute after:-bottom-2 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full",
+                  solid
+                    ? "text-primary hover:text-crimson-glow"
+                    : "text-white/90 hover:text-crimson-glow",
+                )}
               >
                 {link.label}
               </a>
@@ -88,7 +110,12 @@ export function Navbar() {
               aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((v) => !v)}
-              className="flex size-9 items-center justify-center rounded-md border border-border text-foreground transition-colors hover:border-primary/50 sm:size-10 lg:hidden"
+              className={cn(
+                "flex size-9 items-center justify-center rounded-md border transition-colors sm:size-10 lg:hidden",
+                solid
+                  ? "border-border text-foreground hover:border-primary/50"
+                  : "border-white/40 text-white hover:border-white/70",
+              )}
             >
               {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>

@@ -8,7 +8,7 @@ export function Faq() {
       <div
         className="pointer-events-none absolute -left-20 bottom-10 size-64 rounded-full opacity-25"
         style={{
-          background: "radial-gradient(circle, oklch(0.57 0.235 27.5 / 0.2), transparent 70%)",
+          background: "radial-gradient(circle, color-mix(in oklch, var(--crimson) 18%, transparent), transparent 70%)",
         }}
         aria-hidden
       />

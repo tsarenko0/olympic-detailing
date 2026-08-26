@@ -58,8 +58,8 @@ export function InstagramGrid() {
                     playsInline
                     preload="auto"
                   />
-                  <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-60" />
-                  <span className="absolute bottom-2 left-2 right-2 flex items-center justify-center gap-1.5 rounded-sm bg-background/70 px-2 py-1 text-[9px] font-semibold uppercase tracking-widest text-foreground backdrop-blur transition-transform duration-500 group-hover:-translate-y-1 sm:text-[10px]">
+                  <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/50 via-transparent to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-55" />
+                  <span className="absolute bottom-2 left-2 right-2 flex items-center justify-center gap-1.5 rounded-sm bg-background/90 px-2 py-1 text-[9px] font-semibold uppercase tracking-widest text-foreground shadow-sm backdrop-blur transition-transform duration-500 group-hover:-translate-y-1 sm:text-[10px]">
                     <Instagram className="size-3 shrink-0 text-primary" />
                     Reels
                   </span>

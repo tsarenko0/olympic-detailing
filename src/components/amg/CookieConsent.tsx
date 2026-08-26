@@ -33,7 +33,7 @@ export function CookieConsent() {
           role="dialog"
           aria-live="polite"
           aria-label="Согласие на использование cookie"
-          className="fixed inset-x-0 bottom-0 z-[100] border-t border-border bg-background/95 p-4 shadow-[0_-12px_40px_-20px_oklch(0_0_0_/_0.65)] backdrop-blur-md md:p-5"
+          className="fixed inset-x-0 bottom-0 z-[100] border-t border-border bg-background/95 p-4 shadow-[0_-12px_40px_-20px_oklch(0.2_0.02_30_/_0.28)] backdrop-blur-md md:p-5"
         >
           <div className="mx-auto flex max-w-7xl flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-8">
             <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">

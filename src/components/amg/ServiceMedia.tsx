@@ -26,7 +26,7 @@ export function ServiceMedia({
   return (
     <div
       className={cn(
-        "flex size-full flex-col items-center justify-center gap-3 bg-[linear-gradient(145deg,oklch(0.28_0.02_25),oklch(0.18_0.01_20)_55%,oklch(0.14_0_0))]",
+        "flex size-full flex-col items-center justify-center gap-3 bg-[linear-gradient(145deg,var(--surface-2),var(--muted)_55%,var(--background))]",
         className,
       )}
       role="img"
