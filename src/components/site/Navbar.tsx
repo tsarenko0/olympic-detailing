@@ -73,10 +73,10 @@ export function Navbar() {
             : "border-white/10 bg-black/30 backdrop-blur-md",
         )}
       >
-        <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-2 px-4 sm:gap-3 sm:px-5 md:h-auto md:gap-4 md:px-8 md:py-4">
+        <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-3 px-4 sm:gap-4 sm:px-5 md:h-auto md:px-8 md:py-4">
           <Logo
             className={cn(
-              "shrink min-w-0 transition-colors duration-500",
+              "min-w-0 flex-1 transition-colors duration-500 lg:flex-none",
               solid ? "text-foreground" : "text-white",
             )}
           />
@@ -101,9 +101,10 @@ export function Navbar() {
           <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             <Button
               onClick={() => open()}
-              className="h-9 px-3 text-[10px] font-bold uppercase tracking-[0.14em] shadow-crimson sm:h-10 sm:px-5 sm:text-xs sm:tracking-[0.2em]"
+              className="h-9 px-2.5 text-[10px] font-bold uppercase tracking-[0.12em] shadow-crimson sm:h-10 sm:px-5 sm:text-xs sm:tracking-[0.2em]"
             >
-              Получить консультацию
+              <span className="sm:hidden">Записаться</span>
+              <span className="hidden sm:inline">Получить консультацию</span>
             </Button>
             <button
               type="button"
