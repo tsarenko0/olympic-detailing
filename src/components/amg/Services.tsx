@@ -3,6 +3,7 @@ import { ArrowUpRight, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SERVICES_CATALOG, type ServiceItem } from "@/lib/services-data";
 import { WORK_EXAMPLES } from "@/lib/work-examples-data";
+import { cn } from "@/lib/utils";
 import { useLeadModal } from "./LeadModalProvider";
 import { Reveal } from "./Reveal";
 import { ServiceDetailsDialog } from "./ServiceDetailsDialog";
@@ -36,15 +37,27 @@ export function Services() {
                 delay={index * CARD_REVEAL_STEP_MS}
                 variant={index % 2 === 0 ? "left" : "right"}
               >
-                <article className="group grid overflow-hidden rounded-md border border-white/14 bg-surface transition-all duration-400 hover:border-primary/45 hover:shadow-crimson sm:grid-cols-[148px_minmax(0,1fr)] md:grid-cols-[180px_minmax(0,1fr)]">
-                  <div className="relative aspect-[16/9] overflow-hidden sm:aspect-auto sm:min-h-full">
+                <article
+                  className={cn(
+                    "group grid overflow-hidden rounded-md border bg-surface transition-all duration-400 sm:grid-cols-[148px_minmax(0,1fr)] md:grid-cols-[180px_minmax(0,1fr)]",
+                    service.featured
+                      ? "border-primary/70 shadow-[0_0_0_1px_color-mix(in_oklch,var(--crimson)_45%,transparent),0_0_28px_-2px_color-mix(in_oklch,var(--crimson)_55%,transparent),0_10px_28px_-22px_oklch(0.2_0.02_30_/_0.45)] hover:border-primary hover:shadow-[0_0_0_1px_color-mix(in_oklch,var(--crimson)_60%,transparent),0_0_36px_-2px_color-mix(in_oklch,var(--crimson)_65%,transparent)]"
+                      : "border-border shadow-[0_10px_28px_-22px_oklch(0.2_0.02_30_/_0.45)] hover:border-primary/45 hover:shadow-crimson",
+                  )}
+                >
+                  <div className="relative aspect-square overflow-hidden">
                     <ServiceMedia
                       src={service.image}
                       alt={service.imageAlt}
                       className="transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent sm:bg-gradient-to-r sm:from-transparent sm:to-surface/70" />
-                    <span className="absolute left-2.5 top-2.5 flex size-8 items-center justify-center rounded border border-primary/55 bg-background/70 font-display text-xs font-bold text-primary backdrop-blur">
+                    <span
+                      className={cn(
+                        "absolute left-2.5 top-2.5 flex size-8 items-center justify-center rounded border bg-background/70 font-display text-xs font-bold text-primary backdrop-blur",
+                        service.featured ? "border-primary shadow-crimson" : "border-primary/55",
+                      )}
+                    >
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -75,7 +88,7 @@ export function Services() {
                         size="sm"
                         variant="outline"
                         onClick={() => setDetailsService(service)}
-                        className="h-9 border-white/20 bg-white/[0.04] px-4 text-[10px] font-bold uppercase tracking-[0.16em] hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
+                        className="h-9 border-border bg-background/60 px-4 text-[10px] font-bold uppercase tracking-[0.16em] hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
                       >
                         <Info className="size-3.5" />
                         Подробнее
@@ -114,7 +127,7 @@ export function Services() {
                 size="sm"
                 variant="outline"
                 asChild
-                className="h-9 w-full border-white/20 bg-white/[0.04] text-[10px] font-bold uppercase tracking-[0.16em] hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
+                className="h-9 w-full border-border bg-background/60 text-[10px] font-bold uppercase tracking-[0.16em] hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
               >
                 <a href="#gallery">
                   Смотреть галерею

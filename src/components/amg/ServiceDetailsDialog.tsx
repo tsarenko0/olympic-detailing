@@ -26,22 +26,26 @@ export function ServiceDetailsDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto border-white/12 bg-[linear-gradient(180deg,oklch(0.26_0.012_25),oklch(0.2_0.008_20))] p-0 sm:rounded-md [&>button]:hidden">
-        <div className="relative aspect-[21/9] overflow-hidden border-b border-white/10">
-          <ServiceMedia src={service.image} alt={service.imageAlt} />
-          <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.2_0.008_20)] via-transparent to-transparent" />
-          <DialogClose className="absolute right-2.5 top-2.5 flex size-8 items-center justify-center rounded-md border border-white/20 bg-[oklch(0.16_0.01_20_/_0.75)] text-foreground backdrop-blur transition-colors hover:border-primary/50 hover:text-primary">
+      <DialogContent className="flex max-h-[90vh] max-w-2xl flex-col gap-0 overflow-hidden border-border bg-surface p-0 shadow-[0_24px_60px_-28px_oklch(0.2_0.02_30_/_0.45)] sm:rounded-md [&>button]:hidden">
+        <div className="relative mx-auto aspect-square w-[min(100%,min(42vh,22rem))] shrink-0 overflow-hidden border-b border-border">
+          <ServiceMedia
+            src={service.image}
+            alt={service.imageAlt}
+            className="absolute inset-0 size-full"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent" />
+          <DialogClose className="absolute right-2.5 top-2.5 z-10 flex size-8 items-center justify-center rounded-md border border-border bg-background/85 text-foreground backdrop-blur transition-colors hover:border-primary/50 hover:text-primary">
             <X className="size-3.5" />
             <span className="sr-only">Закрыть</span>
           </DialogClose>
         </div>
 
-        <div className="space-y-4 p-5 md:p-6">
+        <div className="min-h-0 flex-1 space-y-4 overflow-y-auto p-5 md:p-6">
           <DialogHeader className="space-y-2 text-left">
             <p className="text-[9px] font-semibold uppercase tracking-[0.3em] text-primary">
               {service.tag}
             </p>
-            <DialogTitle className="text-xl font-bold uppercase leading-tight text-[oklch(0.97_0.005_20)] md:text-2xl">
+            <DialogTitle className="text-xl font-bold uppercase leading-tight text-foreground md:text-2xl">
               {service.title}
             </DialogTitle>
             <DialogDescription className="sr-only">
