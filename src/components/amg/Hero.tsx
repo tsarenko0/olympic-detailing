@@ -1,25 +1,29 @@
-import { ArrowDown, ArrowRight, Shield, Sparkles, Volume2 } from "lucide-react";
+import { ArrowDown, ArrowRight, Paintbrush, Shield, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useParallax } from "@/hooks/use-parallax";
 import { useLeadModal } from "./LeadModalProvider";
 import { KineticHeadline } from "./KineticHeadline";
-import heroImage from "@/assets/hero-amg-s63.jpg";
+import heroImage from "@/assets/hero-amg-s63.png";
 
 const HERO_PARALLAX_PX = 90;
+const HERO_IMAGE_WIDTH = "110%";
+const HERO_IMAGE_SHIFT_X = "-8%";
+const HERO_OVERLAY_OPACITY = 0.28;
 const STAT_POP_BASE_DELAY_MS = 2100;
 const STAT_POP_STEP_MS = 140;
 const SUBCOPY_DELAY_MS = 1750;
 const CTA_DELAY_MS = 1900;
 
 const HEADLINE_LINES = [
-  { text: "Премиальный детейлинг авто", accent: false },
-  { text: "в Краснодаре", accent: true },
+  { text: "Центр оклейки и", accent: false },
+  { text: "полимерной реставрации", accent: false },
+  { text: "в Минске", accent: true },
 ] as const;
 
 const STATS = [
   { icon: Shield, label: "Бессрочная гарантия на оклейку" },
   { icon: Sparkles, label: "Не пользуемся китайским сырьём" },
-  { icon: Volume2, label: "Шумоизоляцию выполняют специалисты с акустическим образованием" },
+  { icon: Paintbrush, label: "Полимерная реставрация лакокрасочного покрытия" },
 ];
 
 export function Hero() {
@@ -32,20 +36,24 @@ export function Hero() {
         className="absolute inset-0 will-change-transform"
         style={{ transform: `translate3d(0, ${parallaxY}px, 0) scale(${1 + parallaxY * 0.0004})` }}
       >
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="hero-enter absolute inset-0 overflow-hidden">
           <img
             src={heroImage}
-            alt="Чёрный Mercedes-AMG S63 в AMG Detailing"
+            alt="Автомобиль в студии Olympic Detailing"
             width={880}
             height={780}
-            className="hero-enter size-full object-cover object-center"
+            className="absolute top-0 left-0 h-full max-w-none object-cover"
+            style={{
+              width: HERO_IMAGE_WIDTH,
+              transform: `translateX(${HERO_IMAGE_SHIFT_X})`,
+            }}
           />
         </div>
         <div
           className="hero-orb pointer-events-none absolute -left-[8%] top-[18%] size-[min(42vmax,28rem)] rounded-full"
           style={{
             background:
-              "radial-gradient(circle, oklch(0.57 0.235 27.5 / 0.22) 0%, transparent 68%)",
+              "radial-gradient(circle, color-mix(in oklch, var(--crimson) 28%, transparent) 0%, transparent 68%)",
           }}
           aria-hidden
         />
@@ -53,7 +61,7 @@ export function Hero() {
           className="hero-orb pointer-events-none absolute -right-[12%] bottom-[10%] size-[min(28vmax,18rem)] rounded-full opacity-70"
           style={{
             background:
-              "radial-gradient(circle, oklch(0.57 0.235 27.5 / 0.12) 0%, transparent 70%)",
+              "radial-gradient(circle, color-mix(in oklch, var(--crimson) 16%, transparent) 0%, transparent 70%)",
             animationDelay: "-4s",
           }}
           aria-hidden
@@ -61,24 +69,47 @@ export function Hero() {
         <div
           className="absolute inset-0"
           style={{
-            background:
-              "linear-gradient(90deg, var(--background) 0%, color-mix(in oklch, var(--background) 92%, transparent) 26%, color-mix(in oklch, var(--background) 68%, transparent) 55%, color-mix(in oklch, var(--background) 32%, transparent) 78%, transparent 94%)",
+            background: `oklch(0.12 0.01 30 / ${HERO_OVERLAY_OPACITY})`,
           }}
+          aria-hidden
         />
+        {/* Soft top blend under frosted navbar */}
         <div
-          className="absolute inset-x-0 bottom-0 h-[42%]"
+          className="absolute inset-x-0 top-0 h-[18%]"
           style={{
             background:
-              "linear-gradient(to top, var(--background) 0%, color-mix(in oklch, var(--background) 75%, transparent) 35%, color-mix(in oklch, var(--background) 25%, transparent) 70%, transparent 100%)",
+              "linear-gradient(to bottom, oklch(0.08 0.01 30 / 0.45) 0%, transparent 100%)",
           }}
+          aria-hidden
+        />
+        {/* Left scrim for headline / crimson accent */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, oklch(0.12 0.01 30 / 0.55) 0%, oklch(0.12 0.01 30 / 0.28) 22%, oklch(0.12 0.01 30 / 0.1) 42%, transparent 62%)",
+          }}
+          aria-hidden
+        />
+        {/* Soft handoff into light page */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-[18%]"
+          style={{
+            background:
+              "linear-gradient(to top, var(--background) 0%, color-mix(in oklch, var(--background) 40%, transparent) 55%, transparent 100%)",
+          }}
+          aria-hidden
         />
       </div>
 
       <div className="relative mx-auto flex w-full min-w-0 max-w-7xl flex-col justify-center px-5 pb-24 md:px-8 md:pb-28">
-        <KineticHeadline lines={HEADLINE_LINES} />
+        <KineticHeadline
+          lines={HEADLINE_LINES}
+          className="text-white text-[clamp(1.75rem,6.5vw,4rem)] leading-[1.08]"
+        />
 
         <p
-          className="hero-text-enter mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
+          className="hero-text-enter mt-6 max-w-xl text-base leading-relaxed text-white/80 md:text-lg"
           style={{ animationDelay: `${SUBCOPY_DELAY_MS}ms` }}
         >
           Защита кузова, оклейка пленками и профессиональная шумоизоляция для вашей машины
@@ -98,13 +129,13 @@ export function Hero() {
           </Button>
           <a
             href="#services"
-            className="inline-flex h-14 items-center justify-center rounded-md border border-border px-8 text-xs font-bold uppercase tracking-[0.2em] text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary"
+            className="inline-flex h-14 items-center justify-center rounded-md border border-white/45 bg-white/10 px-8 text-xs font-bold uppercase tracking-[0.2em] text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-white/70 hover:bg-white/18"
           >
             Наши услуги
           </a>
         </div>
 
-        <ul className="mt-14 grid gap-4 border-t border-border/70 pt-8 sm:grid-cols-3">
+        <ul className="mt-8 grid gap-4 border-t border-white/20 pt-6 sm:grid-cols-3">
           {STATS.map((stat, index) => (
             <li
               key={stat.label}
@@ -114,10 +145,10 @@ export function Hero() {
               }}
             >
               <stat.icon
-                className="icon-bob size-5 shrink-0 text-primary"
+                className="icon-bob size-5 shrink-0 text-crimson-glow"
                 style={{ animationDelay: `${index * 0.35}s` }}
               />
-              <span className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">
+              <span className="text-xs font-semibold uppercase tracking-[0.15em] text-white/88">
                 {stat.label}
               </span>
             </li>
@@ -128,10 +159,10 @@ export function Hero() {
       <a
         href="#services"
         aria-label="Листать вниз"
-        className="scroll-hint absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground"
+        className="scroll-hint absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/55"
       >
         <span className="text-[10px] uppercase tracking-[0.3em]">Листать</span>
-        <ArrowDown className="size-4 text-primary" />
+        <ArrowDown className="size-4 text-crimson-glow" />
       </a>
     </section>
   );
