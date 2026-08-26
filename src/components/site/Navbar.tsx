@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Clock, Menu, Phone, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CONTACT, NAV_LINKS } from "@/lib/amg-data";
+import { CONTACT, NAV_LINKS } from "@/lib/site-data";
 import { useLeadModal } from "./LeadModalProvider";
 import { Logo } from "./Logo";
 import { cn } from "@/lib/utils";

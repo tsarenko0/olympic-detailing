@@ -1,15 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { LeadModalProvider } from "@/components/amg/LeadModalProvider";
-import { Navbar } from "@/components/amg/Navbar";
-import { Hero } from "@/components/amg/Hero";
-import { MotionMarquee } from "@/components/amg/MotionMarquee";
-import { Services } from "@/components/amg/Services";
-import { WhyUs } from "@/components/amg/WhyUs";
-import { Faq } from "@/components/amg/Faq";
-import { InstagramGrid } from "@/components/amg/InstagramGrid";
-import { Contacts } from "@/components/amg/Contacts";
-import { Footer } from "@/components/amg/Footer";
-import { JsonLd } from "@/components/amg/JsonLd";
+import { LeadModalProvider } from "@/components/site/LeadModalProvider";
+import { Navbar } from "@/components/site/Navbar";
+import { Hero } from "@/components/site/Hero";
+import { MotionMarquee } from "@/components/site/MotionMarquee";
+import { Services } from "@/components/site/Services";
+import { WhyUs } from "@/components/site/WhyUs";
+import { Faq } from "@/components/site/Faq";
+import { InstagramGrid } from "@/components/site/InstagramGrid";
+import { Contacts } from "@/components/site/Contacts";
+import { Footer } from "@/components/site/Footer";
+import { JsonLd } from "@/components/site/JsonLd";
 import { buildHomeJsonLd, homeHeadMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({

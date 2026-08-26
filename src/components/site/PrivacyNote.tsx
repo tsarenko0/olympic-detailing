@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { PRIVACY_PATH } from "@/lib/amg-data";
+import { PRIVACY_PATH } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 
 export function PrivacyNote({

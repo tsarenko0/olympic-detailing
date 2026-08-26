@@ -1,6 +1,6 @@
 import { Clock, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CONTACT } from "@/lib/amg-data";
+import { CONTACT } from "@/lib/site-data";
 import { Reveal } from "./Reveal";
 import { ContactLeadForm } from "./ContactLeadForm";
 import { YandexMap } from "./YandexMap";

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { submitContactLead } from "@/lib/submit-contact-lead";
-import type { LeadFormValues } from "@/components/amg/LeadFormFields";
+import type { LeadFormValues } from "@/components/site/LeadFormFields";
 
 export const EMPTY_LEAD_VALUES: LeadFormValues = {
   name: "",

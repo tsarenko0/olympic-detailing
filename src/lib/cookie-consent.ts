@@ -1,4 +1,4 @@
-export const COOKIE_CONSENT_STORAGE_KEY = "amg-cookie-consent" as const;
+export const COOKIE_CONSENT_STORAGE_KEY = "olympic-cookie-consent" as const;
 export const COOKIE_CONSENT_ACCEPTED = "accepted" as const;
 
 export function hasCookieConsent(): boolean {

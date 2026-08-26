@@ -1,5 +1,5 @@
 import { Instagram } from "lucide-react";
-import { CONTACT, INSTAGRAM_REELS } from "@/lib/amg-data";
+import { CONTACT, INSTAGRAM_REELS } from "@/lib/site-data";
 import { PrivacyNote } from "./PrivacyNote";
 import { Reveal } from "./Reveal";
 import poster2 from "@/assets/gallery-6.jpg";

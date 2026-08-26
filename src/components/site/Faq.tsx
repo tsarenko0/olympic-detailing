@@ -1,5 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { FAQ_ITEMS } from "@/lib/amg-data";
+import { FAQ_ITEMS } from "@/lib/site-data";
 import { Reveal } from "./Reveal";
 
 export function Faq() {

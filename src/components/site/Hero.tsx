@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useParallax } from "@/hooks/use-parallax";
 import { useLeadModal } from "./LeadModalProvider";
 import { KineticHeadline } from "./KineticHeadline";
-import heroImage from "@/assets/hero-amg-s63.png";
+import heroImage from "@/assets/hero-car.png";
 
 const HERO_PARALLAX_PX = 90;
 const HERO_IMAGE_WIDTH = "110%";

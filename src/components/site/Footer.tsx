@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, MessageCircle, Phone } from "lucide-react";
-import { CONTACT, NAV_LINKS, PRIVACY_PATH } from "@/lib/amg-data";
+import { CONTACT, NAV_LINKS, PRIVACY_PATH } from "@/lib/site-data";
 import { Logo } from "./Logo";
 
 export function Footer() {

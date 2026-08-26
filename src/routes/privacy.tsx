@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Footer } from "@/components/amg/Footer";
-import { Logo } from "@/components/amg/Logo";
-import { CONTACT } from "@/lib/amg-data";
+import { Footer } from "@/components/site/Footer";
+import { Logo } from "@/components/site/Logo";
+import { CONTACT } from "@/lib/site-data";
 import { privacyHeadMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/privacy")({

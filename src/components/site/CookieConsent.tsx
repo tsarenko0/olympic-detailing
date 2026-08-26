@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { PRIVACY_PATH } from "@/lib/amg-data";
+import { PRIVACY_PATH } from "@/lib/site-data";
 import { acceptCookieConsent, hasCookieConsent } from "@/lib/cookie-consent";
 import { YandexMetrika } from "./YandexMetrika";
 

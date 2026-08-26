@@ -1,4 +1,4 @@
-import { CONTACT, FAQ_ITEMS } from "@/lib/amg-data";
+import { CONTACT, FAQ_ITEMS } from "@/lib/site-data";
 
 /** Production origin without trailing slash, e.g. https://example.com */
 export const SITE_ORIGIN = String(import.meta.env["VITE_SITE_URL"] ?? "").replace(/\/$/, "");
