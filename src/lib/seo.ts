@@ -6,9 +6,11 @@ import { CONTACT } from "@/lib/site-data";
 export const SITE_ORIGIN = String(import.meta.env["VITE_SITE_URL"] ?? "").replace(/\/$/, "");
 
 const DEFAULT_GOOGLE_SITE_VERIFICATION = "GV3YB67R_tagXXjmoSuO0tAEJDA7mJspZTFZMAhBVtk";
+const DEFAULT_YANDEX_SITE_VERIFICATION = "d95060a31994f02d";
 const GOOGLE_SITE_VERIFICATION =
   String(import.meta.env["VITE_GOOGLE_SITE_VERIFICATION"] ?? "") || DEFAULT_GOOGLE_SITE_VERIFICATION;
-const YANDEX_VERIFICATION = String(import.meta.env["VITE_YANDEX_VERIFICATION"] ?? "");
+const YANDEX_VERIFICATION =
+  String(import.meta.env["VITE_YANDEX_VERIFICATION"] ?? "") || DEFAULT_YANDEX_SITE_VERIFICATION;
 
 export const SEO_BRAND = "Olympic Detailing";
 
@@ -19,6 +21,11 @@ export const OG_IMAGE_WIDTH = 1200;
 export const OG_IMAGE_HEIGHT = 630;
 export const OG_IMAGE_TYPE = "image/jpeg";
 export const OG_IMAGE_ALT = "Автомобиль после детейлинга в студии Olympic Detailing, Минск";
+/** Honest sitemap lastmod — bump when homepage content or OG image meaningfully changes */
+export const SITEMAP_LASTMOD = "2026-08-31";
+export const OG_IMAGE_CAPTION =
+  "Olympic Detailing Минск: детейлинг, антигравийная плёнка, шумоизоляция и керамика";
+export const OG_IMAGE_GEO_LOCATION = "Минск, Беларусь";
 
 export const WEB_MANIFEST_PATH = "/site.webmanifest";
 
