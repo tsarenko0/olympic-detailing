@@ -39,9 +39,11 @@ export function Hero() {
         <div className="hero-enter absolute inset-0 overflow-hidden">
           <img
             src={heroImage}
-            alt="Автомобиль в студии Olympic Detailing"
+            alt="Автомобиль в студии Olympic Detailing в Минске"
             width={880}
             height={780}
+            fetchPriority="high"
+            decoding="async"
             className="absolute top-0 left-0 h-full max-w-none object-cover"
             style={{
               width: HERO_IMAGE_WIDTH,

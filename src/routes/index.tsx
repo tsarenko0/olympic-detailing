@@ -10,7 +10,8 @@ import { InstagramGrid } from "@/components/site/InstagramGrid";
 import { Contacts } from "@/components/site/Contacts";
 import { Footer } from "@/components/site/Footer";
 import { JsonLd } from "@/components/site/JsonLd";
-import { buildHomeJsonLd, homeHeadMeta } from "@/lib/seo";
+import { homeHeadMeta } from "@/lib/seo";
+import { buildHomeJsonLd } from "@/lib/seo-jsonld";
 
 export const Route = createFileRoute("/")({
   head: () => homeHeadMeta(),

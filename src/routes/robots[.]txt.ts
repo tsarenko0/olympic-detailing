@@ -1,8 +1,31 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SITE_ORIGIN } from "@/lib/seo";
 
+const TRACKING_PARAMS = [
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_content",
+  "utm_term",
+  "yclid",
+  "ysclid",
+  "gclid",
+].join("&");
+
+function originHost(origin: string): string | undefined {
+  try {
+    const url = new URL(origin);
+    if (url.protocol !== "https:") return undefined;
+    if (url.hostname === "localhost" || url.hostname.endsWith(".local")) return undefined;
+    return url.host;
+  } catch {
+    return undefined;
+  }
+}
+
 function buildRobotsTxt(origin: string) {
   const base = origin.replace(/\/$/, "");
+  const host = originHost(base);
 
   return `User-agent: Googlebot
 Allow: /
@@ -13,6 +36,9 @@ Allow: /
 User-agent: Yandex
 Allow: /
 
+User-agent: YandexBot
+Allow: /
+
 User-agent: Twitterbot
 Allow: /
 
@@ -21,6 +47,8 @@ Allow: /
 
 User-agent: *
 Allow: /
+${host ? `\nHost: ${host}` : ""}
+Clean-param: ${TRACKING_PARAMS}
 
 Sitemap: ${base}/sitemap.xml
 `;

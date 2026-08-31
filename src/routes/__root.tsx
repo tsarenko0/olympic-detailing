@@ -13,24 +13,27 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
 import { CookieConsent } from "@/components/site/CookieConsent";
-import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, SEO_BRAND, absoluteUrl } from "@/lib/seo";
+import { NOT_FOUND_TITLE, rootSeoMeta } from "@/lib/seo";
 
+const NOINDEX_ROBOTS = "noindex, nofollow";
 
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <title>{NOT_FOUND_TITLE}</title>
+      <meta name="robots" content={NOINDEX_ROBOTS} />
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">Страница не найдена</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          Такой страницы нет — она удалена или адрес указан с ошибкой.
         </p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Go home
+            На главную
           </Link>
         </div>
       </div>
@@ -47,12 +50,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <meta name="robots" content={NOINDEX_ROBOTS} />
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+          Страница не загрузилась
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+          Что-то пошло не так. Обновите страницу или вернитесь на главную.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -62,13 +66,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             }}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Try again
+            Попробовать снова
           </button>
           <a
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
-            Go home
+            На главную
           </a>
         </div>
       </div>
@@ -78,22 +82,9 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => {
-    const canonical = absoluteUrl("/");
+    const seo = rootSeoMeta();
     return {
-      meta: [
-        { charSet: "utf-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { title: DEFAULT_TITLE },
-        { name: "description", content: DEFAULT_DESCRIPTION },
-        { name: "robots", content: "index, follow" },
-        { property: "og:locale", content: "ru_RU" },
-        { property: "og:site_name", content: SEO_BRAND },
-        { property: "og:title", content: DEFAULT_TITLE },
-        { property: "og:description", content: DEFAULT_DESCRIPTION },
-        { property: "og:type", content: "website" },
-        ...(canonical ? [{ property: "og:url", content: canonical }] : []),
-        { name: "twitter:card", content: "summary_large_image" },
-      ],
+      meta: seo.meta,
       links: [
         {
           rel: "stylesheet",
@@ -105,10 +96,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           rel: "stylesheet",
           href: "https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap",
         },
-        { rel: "icon", href: "/favicon.ico?v=olympic", type: "image/x-icon" },
-        { rel: "icon", href: "/favicon.png?v=olympic", type: "image/png" },
-        { rel: "apple-touch-icon", href: "/apple-touch-icon.png?v=olympic" },
-        ...(canonical ? [{ rel: "canonical", href: canonical }] : []),
+        ...seo.links,
       ],
     };
   },
@@ -145,4 +133,3 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
-

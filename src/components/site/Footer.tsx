@@ -50,13 +50,13 @@ export function Footer() {
               {CONTACT.phone}
             </a>
             <a
-              href={CONTACT.whatsapp}
+              href={CONTACT.telegram}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2.5 text-muted-foreground transition-colors hover:text-primary"
             >
               <MessageCircle className="size-3.5 shrink-0 text-primary" aria-hidden />
-              WhatsApp
+              Telegram
             </a>
             <a
               href={CONTACT.instagram}

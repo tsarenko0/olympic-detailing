@@ -1,0 +1,24 @@
+{
+  "name": "Olympic Detailing",
+  "short_name": "Olympic",
+  "description": "Детейлинг в Минске: оклейка плёнкой, шумоизоляция, керамика и полировка.",
+  "lang": "ru",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#f3f4f6",
+  "theme_color": "#be0008",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

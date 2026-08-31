@@ -138,9 +138,9 @@ export function Contacts() {
                   size="lg"
                   className="h-12 w-full min-w-0 border-border bg-transparent px-4 text-[11px] font-bold uppercase tracking-[0.14em] transition-transform duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:bg-transparent hover:text-primary"
                 >
-                  <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer">
+                  <a href={CONTACT.telegram} target="_blank" rel="noopener noreferrer">
                     <MessageCircle />
-                    WhatsApp
+                    Telegram
                   </a>
                 </Button>
               </div>

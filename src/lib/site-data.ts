@@ -2,11 +2,18 @@ export const CONTACT = {
   brand: "Olympic",
   phone: "+375 29 314 5777",
   phoneHref: "tel:+375293145777",
-  whatsapp: "https://wa.me/375293145777",
+  telegram: "https://t.me/olympic_detailing_minsk",
   instagram: "https://www.instagram.com/olympic_detailing_minsk/",
   hours: "Ежедневно с 9:30 до 19:00",
   hoursShort: "9:30 — 19:00",
   address: "Минск, Михаловская 18",
+  streetAddress: "ул. Михаловская, 18",
+  addressLocality: "Минск",
+  addressCountry: "BY",
+  geo: {
+    latitude: 53.8741,
+    longitude: 27.4792,
+  },
   mapsUrl:
     "https://yandex.ru/maps/?text=%D0%9C%D0%B8%D0%BD%D1%81%D0%BA%2C%20%D0%9C%D0%B8%D1%85%D0%B0%D0%BB%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F%2018",
 };
