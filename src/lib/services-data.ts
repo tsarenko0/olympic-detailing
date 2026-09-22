@@ -1,12 +1,22 @@
 import ceramicWork from "@/assets/service-ceramic-work.png";
 import polishing from "@/assets/service-polishing.png";
 import polymerChips from "@/assets/service-polymer-chips.png";
+import glassPolishing from "@/assets/service-glass-polishing.jpg";
+import glassPolishingBefore from "@/assets/service-glass-polishing-before.jpg";
+import glassPolishingAfter from "@/assets/service-glass-polishing-after.jpg";
 import ppf from "@/assets/service-ppf.png";
 import vinyl from "@/assets/service-vinyl.png";
 import tinting from "@/assets/service-tinting.png";
 import leather from "@/assets/service-leather.png";
 import dryCleaning from "@/assets/service-dry-cleaning.png";
 import wash from "@/assets/service-wash.png";
+
+export type ServiceBeforeAfter = {
+  before: string;
+  after: string;
+  beforeAlt: string;
+  afterAlt: string;
+};
 
 export type ServiceItem = {
   id: string;
@@ -16,6 +26,7 @@ export type ServiceItem = {
   details: string[];
   image?: string;
   imageAlt: string;
+  beforeAfter?: ServiceBeforeAfter;
   featured?: boolean;
 };
 
@@ -33,6 +44,25 @@ export const SERVICES_CATALOG: ServiceItem[] = [
     image: polymerChips,
     imageAlt: "Полимерная реставрация сколов на кузове",
     featured: true,
+  },
+  {
+    id: "glass-polishing",
+    title: "Полировка стекол",
+    tag: "Восстановление",
+    teaser:
+      "Убираем потёртости от дворников, матовость и мелкие царапины — стёкла снова прозрачные.",
+    details: [
+      "Полировка стёкол восстанавливает прозрачность: убираем следы от дворников, лёгкую матовость, водяные разводы и мелкие дефекты поверхности.",
+      "Работаем с лобовым, боковыми и задним стеклом — улучшаем обзор и аккуратный внешний вид без замены стекла.",
+    ],
+    image: glassPolishing,
+    imageAlt: "Полировка автомобильных стёкол",
+    beforeAfter: {
+      before: glassPolishingBefore,
+      after: glassPolishingAfter,
+      beforeAlt: "Стекло до полировки — царапины и матовость",
+      afterAlt: "Стекло после полировки — прозрачность восстановлена",
+    },
   },
   {
     id: "ppf",
