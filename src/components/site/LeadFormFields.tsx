@@ -38,7 +38,7 @@ export function LeadFormFields({
           required
           value={values.phone}
           onChange={(event) => onChange({ phone: event.target.value })}
-          placeholder="+7 (___) ___-__-__"
+          placeholder="+375 (__) ___-__-__"
           className="h-11 bg-background/60"
           autoComplete="tel"
         />
