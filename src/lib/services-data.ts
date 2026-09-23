@@ -63,6 +63,7 @@ export const SERVICES_CATALOG: ServiceItem[] = [
       beforeAlt: "Стекло до полировки — царапины и матовость",
       afterAlt: "Стекло после полировки — прозрачность восстановлена",
     },
+    featured: true,
   },
   {
     id: "ppf",
