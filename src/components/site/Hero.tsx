@@ -15,7 +15,7 @@ const SUBCOPY_DELAY_MS = 1750;
 const CTA_DELAY_MS = 1900;
 
 const HEADLINE_LINES = [
-  { text: "Центр оклейки и", accent: false },
+  { text: "Детейлинг-центр", accent: false },
   { text: "полимерной реставрации", accent: false },
   { text: "в Минске", accent: true },
 ] as const;
